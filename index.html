@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Códice del Tiempo | Literatura Medieval Integral - LOMLOE Andalucía</title>
+    <title>El Códice del Tiempo | Literatura Medieval Extendida - Juegos y LOMLOE</title>
     <style>
-        /* =========================================================
-           VARIABLES Y TIPOGRAFÍA PREMIUM (Carga segura)
-           ========================================================= */
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
         :root {
-            --bg-dark: #0a0f18;
-            --bg-panel: #131c2e;
-            --bg-card: #1e293b;
-            --text-main: #e2e8f0;
-            --text-muted: #94a3b8;
+            --bg-dark: #070b12;
+            --bg-panel: #111827;
+            --bg-card: #1f2937;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
             --gold-primary: #fbbf24;
             --gold-hover: #f59e0b;
+            --gold-dim: rgba(251, 191, 36, 0.2);
             --accent-red: #9f1239;
             --accent-blue: #1d4ed8;
             --accent-green: #047857;
@@ -25,668 +23,561 @@
             --font-title: 'Cinzel', serif;
             --font-body: 'Inter', sans-serif;
             --font-lit: 'Playfair Display', serif;
-            --glow: 0 0 15px rgba(251, 191, 36, 0.2);
+            --glow: 0 0 20px rgba(251, 191, 36, 0.3);
             --transition: all 0.3s ease;
         }
 
-        /* =========================================================
-           RESETEO, BASE Y SCROLLBAR
-           ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); line-height: 1.7; overflow-x: hidden; scroll-behavior: smooth; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); line-height: 1.8; overflow-x: hidden; scroll-behavior: smooth; }
         h1, h2, h3, h4, h5 { font-family: var(--font-title); color: var(--gold-primary); font-weight: 700; margin-bottom: 1.2rem; }
         a { color: var(--gold-primary); text-decoration: none; transition: var(--transition); }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--bg-panel); border: 1px solid var(--gold-primary); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--bg-panel); border: 1px solid var(--gold-primary); border-radius: 6px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--gold-hover); }
 
-        /* =========================================================
-           ESTRUCTURA PRINCIPAL Y SIDEBAR
-           ========================================================= */
         #app-container { display: flex; min-height: 100vh; }
         
-        #sidebar { width: 300px; background-color: var(--bg-panel); border-right: 2px solid rgba(251, 191, 36, 0.3); padding: 2.5rem 1.5rem; position: fixed; height: 100vh; overflow-y: auto; z-index: 100; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
-        .logo { font-size: 1.8rem; text-align: center; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1.5rem; letter-spacing: 2px; }
+        #sidebar { width: 320px; background-color: var(--bg-panel); border-right: 2px solid var(--gold-dim); padding: 2.5rem 1.5rem; position: fixed; height: 100vh; overflow-y: auto; z-index: 100; box-shadow: 5px 0 20px rgba(0,0,0,0.8); }
+        .logo { font-size: 2rem; text-align: center; margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1.5rem; letter-spacing: 3px; font-weight: 900; }
         
-        .nav-link { display: block; padding: 1rem 1.2rem; margin-bottom: 0.8rem; border-radius: 8px; color: var(--text-muted); font-family: var(--font-title); border: 1px solid transparent; cursor: pointer; transition: var(--transition); font-size: 0.95rem; }
-        .nav-link:hover, .nav-link.active { background: rgba(251, 191, 36, 0.15); color: var(--gold-primary); border-color: rgba(251, 191, 36, 0.4); box-shadow: inset 0 0 10px rgba(251, 191, 36, 0.1); }
+        .nav-link { display: block; padding: 1rem 1.2rem; margin-bottom: 0.8rem; border-radius: 8px; color: var(--text-muted); font-family: var(--font-title); border: 1px solid transparent; cursor: pointer; transition: var(--transition); font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-link:hover, .nav-link.active { background: rgba(251, 191, 36, 0.15); color: var(--gold-primary); border-color: rgba(251, 191, 36, 0.5); box-shadow: inset 0 0 15px rgba(251, 191, 36, 0.1); }
         
-        .student-dashboard { background: rgba(0,0,0,0.5); border-radius: 8px; padding: 1.5rem; margin-top: 3rem; border: 1px solid rgba(251, 191, 36, 0.2); }
-        .xp-bar-container { background: #111; height: 12px; border-radius: 6px; margin: 15px 0; overflow: hidden; border: 1px solid #333; }
-        .xp-bar { height: 100%; background: linear-gradient(90deg, #b45309, var(--gold-primary)); width: 0%; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .dashboard-stats { font-size: 0.9rem; display: flex; justify-content: space-between; color: var(--text-main); font-weight: 600; }
+        .student-dashboard { background: rgba(0,0,0,0.6); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; border: 1px solid var(--gold-dim); }
+        .xp-bar-container { background: #000; height: 15px; border-radius: 8px; margin: 15px 0; overflow: hidden; border: 1px solid #333; }
+        .xp-bar { height: 100%; background: linear-gradient(90deg, #b45309, var(--gold-primary)); width: 0%; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dashboard-stats { font-size: 0.95rem; display: flex; justify-content: space-between; color: var(--text-main); font-weight: bold; }
 
-        #main-content { margin-left: 300px; flex: 1; padding: 4rem; max-width: 1400px; }
+        #main-content { margin-left: 320px; flex: 1; padding: 4rem 5rem; max-width: 1600px; }
         
-        /* =========================================================
-           COMPONENTES TEÓRICOS Y LITERARIOS
-           ========================================================= */
         .mission-header { text-align: center; margin-bottom: 5rem; position: relative; }
-        .mission-header h1 { font-size: 3.5rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
-        .badge { background: linear-gradient(45deg, var(--gold-hover), var(--gold-primary)); color: var(--bg-dark); padding: 0.5rem 1.5rem; border-radius: 30px; font-weight: bold; font-size: 1rem; margin-bottom: 1.5rem; display: inline-block; box-shadow: var(--glow); text-transform: uppercase; }
+        .mission-header h1 { font-size: 4rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 1.5rem; text-shadow: 3px 3px 10px rgba(0,0,0,0.9); }
+        .badge { background: linear-gradient(45deg, var(--gold-hover), var(--gold-primary)); color: var(--bg-dark); padding: 0.6rem 2rem; border-radius: 30px; font-weight: 900; font-size: 1.1rem; margin-bottom: 2rem; display: inline-block; box-shadow: var(--glow); text-transform: uppercase; letter-spacing: 2px; }
         
-        .theory-section { background: var(--bg-card); border-left: 5px solid var(--accent-blue); padding: 3rem; border-radius: 0 16px 16px 0; margin-bottom: 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
-        .theory-section::before { content: "§"; position: absolute; top: -15px; left: -20px; background: var(--accent-blue); color: white; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-family: var(--font-title); font-size: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .theory-section h3 { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; margin-top: 2rem; color: #60a5fa; }
+        .theory-section { background: var(--bg-card); border-left: 6px solid var(--accent-blue); padding: 4rem; border-radius: 0 16px 16px 0; margin-bottom: 4rem; box-shadow: 0 15px 40px rgba(0,0,0,0.6); position: relative; }
+        .theory-section h3 { border-bottom: 2px solid rgba(255,255,255,0.05); padding-bottom: 1rem; margin-top: 3rem; color: #60a5fa; font-size: 2rem; }
         .theory-section h3:first-child { margin-top: 0; }
-        .theory-section p { margin-bottom: 1.5rem; font-size: 1.15rem; text-align: justify; }
-        .theory-section ul { margin-left: 2rem; margin-bottom: 2rem; }
-        .theory-section li { margin-bottom: 1rem; font-size: 1.1rem; }
+        .theory-section p { margin-bottom: 1.5rem; font-size: 1.2rem; text-align: justify; line-height: 1.9; }
+        .theory-section ul { margin-left: 2.5rem; margin-bottom: 2rem; }
+        .theory-section li { margin-bottom: 1rem; font-size: 1.2rem; line-height: 1.8; }
 
-        /* PERGAMINOS (Lectura inmersiva) */
-        .pergamino { background: #fef9c3; color: #451a03; padding: 4rem; border-radius: 8px; box-shadow: inset 0 0 60px rgba(139, 69, 19, 0.1), 0 15px 35px rgba(0,0,0,0.6); font-family: var(--font-lit); margin: 4rem 0; position: relative; border: 2px solid #d97706; }
-        .pergamino::before { content: "❧"; position: absolute; top: 15px; left: 50%; transform: translateX(-50%); color: #b45309; font-size: 2.5rem; }
-        .pergamino-title { font-family: var(--font-title); font-weight: bold; color: #92400e; margin-bottom: 2.5rem; text-align: center; font-size: 1.6rem; border-bottom: 2px solid #f59e0b; padding-bottom: 1rem; }
-        .pergamino p { margin-bottom: 1.2rem; font-size: 1.3rem; line-height: 2; text-align: justify; }
-        .pergamino .verso { display: block; margin-left: 10%; text-align: left; margin-bottom: 0.3rem; font-size: 1.3rem; }
-        .pergamino .estrofa { margin-bottom: 2rem; }
-        .pergamino .nota-margen { float: right; width: 25%; background: rgba(217, 119, 6, 0.1); padding: 1rem; font-size: 1rem; border-left: 2px solid #d97706; margin-left: 2rem; font-style: italic; }
+        .pergamino { background: #fef9c3; color: #451a03; padding: 5rem; border-radius: 12px; box-shadow: inset 0 0 80px rgba(139, 69, 19, 0.15), 0 20px 50px rgba(0,0,0,0.8); font-family: var(--font-lit); margin: 5rem 0; position: relative; border: 3px solid #d97706; }
+        .pergamino::before { content: "❧"; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); color: #b45309; font-size: 3rem; }
+        .pergamino-title { font-family: var(--font-title); font-weight: 900; color: #92400e; margin-bottom: 3rem; text-align: center; font-size: 2rem; border-bottom: 3px solid #f59e0b; padding-bottom: 1.5rem; text-transform: uppercase; }
+        .pergamino p { margin-bottom: 1.5rem; font-size: 1.4rem; line-height: 2.2; text-align: justify; }
+        .pergamino .verso { display: block; margin-left: 10%; text-align: left; margin-bottom: 0.4rem; font-size: 1.4rem; }
+        .pergamino .estrofa { margin-bottom: 2.5rem; }
+        .pergamino .nota-margen { float: right; width: 30%; background: rgba(217, 119, 6, 0.05); padding: 1.5rem; font-size: 1.1rem; border-left: 3px solid #d97706; margin-left: 3rem; margin-bottom: 2rem; font-style: italic; border-radius: 0 8px 8px 0; }
 
-        /* CAJA DE ANÁLISIS PROFUNDO (Sustituye a los iframes rotos) */
-        .deep-analysis-box { background: linear-gradient(135deg, #1e1b4b, #312e81); border: 2px dashed #818cf8; border-radius: 12px; padding: 3rem; margin: 3rem 0; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-        .deep-analysis-box h4 { color: #a5b4fc; font-size: 1.8rem; margin-bottom: 1rem; }
-        .deep-analysis-box p { font-size: 1.15rem; color: #e0e7ff; margin-bottom: 2rem; }
-        .deep-analysis-box .quote-box { background: rgba(0,0,0,0.3); padding: 2rem; border-left: 4px solid #818cf8; font-style: italic; text-align: left; font-size: 1.2rem; }
+        .deep-analysis-box { background: linear-gradient(135deg, #1e1b4b, #312e81); border: 2px dashed #818cf8; border-radius: 16px; padding: 4rem; margin: 4rem 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+        .deep-analysis-box h4 { color: #a5b4fc; font-size: 2.2rem; margin-bottom: 1.5rem; }
+        .deep-analysis-box p { font-size: 1.3rem; color: #e0e7ff; margin-bottom: 2rem; line-height: 1.9; }
 
         /* =========================================================
-           GAMIFICACIÓN: RETOS Y EJERCICIOS
+           COMPONENTES GAMIFICACIÓN Y JUEGOS
            ========================================================= */
-        .retos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; margin-bottom: 5rem; }
-        .reto-card { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 3rem; transition: var(--transition); display: flex; flex-direction: column; position: relative; overflow: hidden; }
-        .reto-card:hover { border-color: var(--gold-primary); transform: translateY(-5px); box-shadow: var(--glow); }
+        .retos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 4rem; margin-bottom: 6rem; }
+        .reto-card { background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 4rem; transition: var(--transition); display: flex; flex-direction: column; position: relative; }
+        .reto-card:hover { border-color: var(--gold-primary); transform: translateY(-8px); box-shadow: var(--glow); }
         
-        .nivel-aprendiz { border-top: 5px solid var(--accent-green); }
-        .nivel-oficial { border-top: 5px solid var(--accent-blue); }
-        .nivel-maestro { border-top: 5px solid var(--accent-purple); }
-        .nivel-gran-maestro { border-top: 5px solid var(--accent-red); }
+        .reto-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2rem; }
+        .xp-badge { background: rgba(251, 191, 36, 0.15); color: var(--gold-primary); font-family: var(--font-title); font-weight: 900; padding: 0.6rem 1.5rem; border-radius: 30px; font-size: 1.2rem; border: 2px solid var(--gold-primary); }
         
-        .reto-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1.5rem; }
-        .xp-badge { background: rgba(251, 191, 36, 0.1); color: var(--gold-primary); font-family: var(--font-title); font-weight: bold; padding: 0.5rem 1.2rem; border-radius: 30px; font-size: 1.1rem; border: 1px solid var(--gold-primary); }
+        textarea { width: 100%; background: rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.2); color: white; padding: 2rem; border-radius: 12px; font-family: var(--font-body); font-size: 1.2rem; resize: vertical; min-height: 200px; margin-bottom: 2rem; line-height: 1.7; transition: all 0.3s; }
+        textarea:focus { outline: none; border-color: var(--gold-primary); background: rgba(0,0,0,0.8); box-shadow: inset 0 0 15px rgba(251, 191, 36, 0.2); }
         
-        .reto-card p { font-size: 1.1rem; margin-bottom: 2rem; color: #cbd5e1; }
+        .btn { background: linear-gradient(180deg, var(--bg-panel), #0f172a); color: var(--gold-primary); border: 2px solid var(--gold-primary); padding: 1.5rem 2.5rem; border-radius: 12px; cursor: pointer; font-family: var(--font-title); font-weight: 900; transition: var(--transition); width: 100%; text-transform: uppercase; letter-spacing: 3px; font-size: 1.2rem; }
+        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); box-shadow: 0 0 25px rgba(251, 191, 36, 0.5); transform: scale(1.02); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
         
-        .interactive-area { margin-top: auto; }
-        textarea { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 1.5rem; border-radius: 8px; font-family: var(--font-body); font-size: 1.1rem; resize: vertical; min-height: 150px; margin-bottom: 1.5rem; line-height: 1.6; transition: all 0.3s; }
-        textarea:focus { outline: none; border-color: var(--gold-primary); background: rgba(0,0,0,0.6); box-shadow: inset 0 0 10px rgba(251, 191, 36, 0.1); }
-        
-        .btn { background: linear-gradient(180deg, var(--bg-panel), #0f172a); color: var(--gold-primary); border: 1px solid var(--gold-primary); padding: 1.2rem 2rem; border-radius: 8px; cursor: pointer; font-family: var(--font-title); font-weight: bold; transition: var(--transition); width: 100%; text-transform: uppercase; letter-spacing: 2px; font-size: 1.1rem; }
-        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); box-shadow: 0 0 15px rgba(251, 191, 36, 0.4); }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; background: #1e293b; border-color: #334155; color: #64748b; box-shadow: none; }
-        
-        .feedback { margin-top: 1.5rem; font-size: 1.1rem; display: none; padding: 1.5rem; border-radius: 8px; line-height: 1.6; font-weight: 600; }
-        .feedback.success { display: block; background: rgba(4, 120, 87, 0.2); border-left: 4px solid var(--accent-green); color: #6ee7b7; animation: fadeIn 0.5s ease-in; }
+        .feedback { margin-top: 2rem; font-size: 1.2rem; display: none; padding: 2rem; border-radius: 12px; line-height: 1.8; font-weight: 600; }
+        .feedback.success { display: block; background: rgba(4, 120, 87, 0.2); border-left: 5px solid var(--accent-green); color: #6ee7b7; animation: fadeIn 0.5s ease-in; }
+
+        /* JUEGOS: ARRASTRAR Y SOLTAR */
+        .drag-container { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+        .drag-items, .drop-zones { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 1rem; }
+        .draggable { background: #374151; padding: 1rem 1.5rem; border-radius: 8px; cursor: grab; font-weight: bold; border: 1px solid #4b5563; transition: all 0.2s; }
+        .draggable:active { cursor: grabbing; transform: scale(0.98); }
+        .drop-zone { background: rgba(0,0,0,0.3); border: 2px dashed #6b7280; padding: 1rem; border-radius: 8px; min-height: 60px; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s; }
+        .drop-zone.drag-over { background: rgba(251, 191, 36, 0.1); border-color: var(--gold-primary); }
+        .drop-zone span { pointer-events: none; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* JUEGOS: ORDENAR CRONOLÓGICAMENTE */
+        .sortable-list { list-style: none; padding: 0; margin-top: 2rem; }
+        .sortable-item { background: #1e293b; padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid #334155; display: flex; align-items: center; gap: 1rem; cursor: grab; font-size: 1.1rem; }
+        .sortable-item:active { cursor: grabbing; }
+        .drag-handle { color: var(--gold-primary); font-size: 1.5rem; cursor: grab; }
+
+        /* JUEGOS: TRIVIAL */
+        .trivial-container { background: #1e293b; padding: 3rem; border-radius: 16px; border: 2px solid var(--accent-blue); text-align: center; }
+        .trivial-question { font-size: 1.5rem; margin-bottom: 2rem; font-family: var(--font-title); }
+        .trivial-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .trivial-btn { background: #0f172a; color: white; border: 1px solid #3b82f6; padding: 1.5rem; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: all 0.2s; }
+        .trivial-btn:hover { background: #3b82f6; }
+        .trivial-btn.correct { background: #059669; border-color: #059669; }
+        .trivial-btn.incorrect { background: #e11d48; border-color: #e11d48; }
+
+        /* JUEGOS: ROSCO DE PASAPALABRA */
+        .rosco-wrapper { position: relative; width: 100%; max-width: 600px; margin: 0 auto; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(15,23,42,0) 40%, rgba(30,41,59,0.5) 70%); border-radius: 50%; }
+        .rosco-letter { position: absolute; width: 40px; height: 40px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: var(--font-title); font-size: 1.2rem; border: 2px solid white; transition: all 0.3s; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .rosco-letter.active { transform: scale(1.4); background: var(--gold-primary); color: #000; border-color: #000; z-index: 20; box-shadow: 0 0 15px var(--gold-primary); }
+        .rosco-letter.correct { background: #059669; }
+        .rosco-letter.incorrect { background: #e11d48; }
+        .rosco-center { text-align: center; width: 60%; z-index: 5; background: rgba(15,23,42,0.9); padding: 2rem; border-radius: 16px; border: 1px solid #334155; }
+        .rosco-def { font-size: 1.2rem; margin-bottom: 1.5rem; min-height: 80px; }
+        .rosco-input { width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid var(--gold-primary); background: #000; color: white; font-size: 1.2rem; text-align: center; margin-bottom: 1rem; }
+
+        /* LOMLOE SECTION */
+        .lomloe-container { background: #f8fafc; color: #0f172a; padding: 5rem; border-radius: 24px; margin-top: 6rem; border: 6px solid var(--gold-primary); }
+        .lomloe-container h2 { font-size: 3rem; border-bottom: 5px solid var(--accent-red); padding-bottom: 1.5rem; margin-bottom: 3rem; }
+        .lomloe-table { width: 100%; border-collapse: collapse; margin: 3rem 0; font-size: 1.1rem; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .lomloe-table th, .lomloe-table td { border: 1px solid #cbd5e1; padding: 2rem; text-align: left; vertical-align: top; line-height: 1.7; }
+        .lomloe-table th { background-color: #e2e8f0; font-family: var(--font-title); font-size: 1.4rem; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* =========================================================
-           SECCIÓN LOMLOE ANDALUCÍA (Tablas densas)
-           ========================================================= */
-        .lomloe-container { background: #f8fafc; color: #0f172a; padding: 4rem; border-radius: 16px; margin-top: 5rem; border: 5px solid var(--gold-primary); box-shadow: inset 0 0 30px rgba(0,0,0,0.05); }
-        .lomloe-container h2 { color: #0f172a; font-family: var(--font-title); font-size: 2.5rem; border-bottom: 4px solid var(--accent-red); padding-bottom: 1rem; margin-bottom: 2rem; text-transform: uppercase; }
-        .lomloe-container h3 { color: #1e293b; margin-top: 3rem; font-size: 1.8rem; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; }
-        .lomloe-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 1.05rem; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .lomloe-table th, .lomloe-table td { border: 1px solid #cbd5e1; padding: 1.5rem; text-align: left; vertical-align: top; }
-        .lomloe-table th { background-color: #f1f5f9; font-weight: bold; color: #0f172a; font-family: var(--font-title); font-size: 1.2rem; }
-        .lomloe-table tr:nth-child(even) { background-color: #f8fafc; }
-        .competencia-tag { display: inline-block; background: #2563eb; color: white; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; margin: 4px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-
-        /* =========================================================
-           RESPONSIVE
-           ========================================================= */
-        @media (max-width: 1100px) {
-            #app-container { flex-direction: column; }
-            #sidebar { width: 100%; height: auto; position: relative; padding: 2rem; border-right: none; border-bottom: 2px solid var(--gold-primary); box-shadow: none; }
-            #main-content { margin-left: 0; padding: 2rem; }
-            .pergamino { padding: 2rem; }
-        }
     </style>
 </head>
 <body>
 
     <div id="app-container">
-        <!-- NAVEGACIÓN Y PERFIL -->
+        <!-- NAVEGACIÓN -->
         <aside id="sidebar">
-            <div class="logo">
-                <span style="color: var(--gold-primary);">EL CÓDICE</span><br>DEL TIEMPO
-            </div>
-            
+            <div class="logo">EL CÓDICE<br><span style="color:var(--gold-primary); font-size: 1.2rem;">DEL TIEMPO</span></div>
             <nav id="nav-menu">
-                <div class="nav-link active" onclick="showSection('intro')">Prólogo y Contexto</div>
-                <div class="nav-link" onclick="showSection('mision1')">Misión I: La Lírica Primitiva</div>
-                <div class="nav-link" onclick="showSection('mision2')">Misión II: Épica y Juglaría</div>
-                <div class="nav-link" onclick="showSection('mision3')">Misión III: Mester de Clerecía</div>
-                <div class="nav-link" onclick="showSection('mision4')">Misión IV: Prosa y Romancero</div>
-                <div class="nav-link" onclick="showSection('mision5')">Misión V: El Prerrenacimiento</div>
-                <div class="nav-link" style="margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.2); border-radius: 0; padding-top: 1.5rem;" onclick="showSection('lomloe')">Anexo: Rúbrica LOMLOE</div>
+                <div class="nav-link active" onclick="showSection('intro')">Contexto General</div>
+                <div class="nav-link" onclick="showSection('mision1')">Misión I: La Lírica</div>
+                <div class="nav-link" onclick="showSection('mision2')">Misión II: La Épica</div>
+                <div class="nav-link" onclick="showSection('mision3')">Misión III: Clerecía</div>
+                <div class="nav-link" onclick="showSection('mision4')">Misión IV: Prosa y Romances</div>
+                <div class="nav-link" onclick="showSection('mision5')">Misión V: La Celestina</div>
+                <div class="nav-link" style="color:var(--gold-primary); border-top:1px solid #333; margin-top:1rem; padding-top:1rem;" onclick="showSection('mision6')">⚜️ EL GRAN TORNEO (JUEGOS)</div>
+                <div class="nav-link" style="margin-top: 1rem;" onclick="showSection('lomloe')">Rúbrica LOMLOE</div>
             </nav>
-
             <div class="student-dashboard">
-                <div style="font-family: var(--font-title); color: var(--gold-primary); text-align: center; margin-bottom: 1.2rem; letter-spacing: 2px; font-size: 1.1rem;">HOJA DE SERVICIOS</div>
+                <div style="font-family: var(--font-title); color: var(--gold-primary); text-align: center; margin-bottom: 1rem;">NIVEL DE MAESTRÍA</div>
                 <div class="dashboard-stats">
-                    <span id="rango-text">Rango: Neófito</span>
-                    <span id="xp-text">0 / 10000 XP</span>
+                    <span id="rango-text">Iniciado</span>
+                    <span id="xp-text">0 / 25000 XP</span>
                 </div>
-                <div class="xp-bar-container">
-                    <div class="xp-bar" id="xp-bar"></div>
-                </div>
+                <div class="xp-bar-container"><div class="xp-bar" id="xp-bar"></div></div>
             </div>
         </aside>
 
         <!-- CONTENIDO PRINCIPAL -->
         <main id="main-content">
             
-            <!-- INTRODUCCIÓN -->
             <section id="intro" class="content-section">
                 <div class="mission-header">
-                    <div class="badge">Introducción Histórica</div>
-                    <h1>La Forja de las Letras</h1>
-                    <p style="font-size: 1.4rem; color: var(--text-muted); max-width: 900px; margin: 0 auto; line-height: 1.8;">Un análisis profundo de la literatura medieval española. Completa los desafíos de escritura para desbloquear todo tu potencial analítico.</p>
+                    <div class="badge">Prólogo Histórico</div>
+                    <h1>La Forja del Castellano</h1>
+                    <p style="font-size: 1.5rem; color: var(--text-muted); max-width: 1000px; margin: 0 auto;">Sumérgete en la Península Ibérica de los siglos XI al XV. Una era de convivencia, guerra, manuscritos iluminados y el nacimiento de una lengua.</p>
                 </div>
-                
                 <div class="theory-section">
-                    <h3>El Crisol de la Península (Siglos XI - XV)</h3>
-                    <p>La Edad Media en la Península Ibérica no fue una época oscura, sino un periodo de inmensa riqueza y complejidad sociopolítica. A diferencia del resto de Europa, en España convivieron, lucharon y colaboraron tres grandes culturas: <strong>cristiana, musulmana y judía</strong>. Este contacto constante generó un caldo de cultivo único para el nacimiento de las lenguas romances (el castellano, el gallego, el catalán) derivadas del latín vulgar.</p>
-                    <p>El estudio del latín y su evolución es fundamental para entender este proceso, tal y como señala la normativa andaluza, ya que permite activar saberes lingüísticos y no lingüísticos, comprendiendo las palabras patrimoniales y los cultismos que forjaron nuestra literatura temprana.</p>
+                    <h3>Un Ecosistema Literario Único (Al-Ándalus y los Reinos Cristianos)</h3>
+                    <p>Mientras en el resto de Europa la literatura nacía bajo el dominio casi exclusivo del latín eclesiástico y las cortes feudales, la Península Ibérica experimentaba un fenómeno irrepetible: la convivencia simultánea de las culturas islámica, judía y cristiana. Durante casi ocho siglos (711 - 1492), la frontera entre Al-Ándalus y los reinos cristianos del norte no fue solo un campo de batalla, sino una membrana porosa por donde circulaban traducciones aristotélicas, cuentos persas, melodías orientales y saberes arquitectónicos.</p>
+                    <p>El estudio de la lengua en este periodo, como destaca la normativa educativa para garantizar la eficacia comunicativa[cite: 14], exige comprender que el castellano no nació en un laboratorio. Evolucionó desde el latín vulgar hablado por soldados y campesinos, enriqueciéndose con más de 4000 arabismos (almohada, alcalde, algoritmo) y estructurándose gracias al esfuerzo diplomático de reyes como Alfonso X el Sabio.</p>
                     
-                    <h3>Características Fundamentales de la Literatura Medieval</h3>
+                    <h3>Los Tres Mesteres (Oficios)</h3>
                     <ul>
-                        <li><strong>La Oralidad Extrema:</strong> Durante siglos, el pergamino fue un material de lujo reservado para la Biblia y los textos legales. El pueblo consumía literatura a través del oído. Los juglares actuaban en plazas y caminos, recitando de memoria e improvisando. Esto explica el uso constante de fórmulas repetitivas, epítetos y llamadas de atención al público en la épica y la lírica tradicional.</li>
-                        <li><strong>El Didactismo y el Teocentrismo:</strong> Dios era el centro del universo. Las enfermedades, las guerras y las cosechas dependían de la voluntad divina. Por tanto, la literatura culta (el Mester de Clerecía o la prosa alfonsí) tenía como objetivo principal salvar el alma del lector y enseñarle moralidad (<em>enseñar deleitando</em>).</li>
-                        <li><strong>El Concepto de Autoría:</strong> Hoy veneramos la originalidad; en la Edad Media, la originalidad era sospechosa. Un autor ganaba prestigio traduciendo y adaptando a las autoridades clásicas (Aristóteles, Cicerón, la Biblia). El texto era considerado un patrimonio común que se modificaba y ampliaba (de ahí las numerosas copias divergentes de un mismo manuscrito).</li>
+                        <li><strong>Mester de Juglaría:</strong> La literatura del pueblo y para el pueblo. Transmisión oral, memoria colectiva, métrica irregular. Narra las hazañas de los héroes (épica) para cohesionar a una sociedad en guerra.</li>
+                        <li><strong>Mester de Clerecía:</strong> La literatura de los monasterios y universidades. Escrita sobre pergamino, métrica perfecta (Cuaderna Vía), intención didáctica y moralizante. Busca enseñar dogmas y salvar almas.</li>
+                        <li><strong>Mester de Cortesía:</strong> (Desarrollado más tarde, S. XV). La literatura de los palacios. Prosa refinada, poesía cancioneril compleja, laberintos verbales diseñados para demostrar el ingenio de los nobles (ej. Jorge Manrique).</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- MISIÓN 1: LÍRICA TRADICIONAL -->
+            <!-- MISIÓN 1: LÍRICA TRADICIONAL (EXPANDIDA) -->
             <section id="mision1" class="content-section" style="display:none;">
                 <div class="mission-header">
                     <div class="badge">Misión I | Siglos XI al XV</div>
-                    <h1>Los Primeros Suspiros</h1>
+                    <h1>El Lamento y la Tierra</h1>
                 </div>
-
                 <div class="theory-section">
-                    <h3>El Nacimiento de la Voz Poética</h3>
-                    <p>Frente a la poesía épica (que narra hazañas de guerreros) o la poesía culta (que adoctrina), existe una corriente poética inmemorial ligada a los ciclos de la naturaleza, el trabajo y los ritos de paso. Es la <strong>lírica tradicional</strong>, caracterizada por su brevedad, su intensidad emotiva y su transmisión oral.</p>
+                    <h3>La Moaxaja y la Jarcha: El Descubrimiento del Siglo XX</h3>
+                    <p>Hasta el año 1948, se creía que la literatura en lenguas romances había comenzado en Francia. Ese año, el investigador húngaro Samuel Miklos Stern descubrió en El Cairo unos manuscritos que cambiaron la historia. Eran poemas cultos árabes y hebreos (las <strong>Moaxajas</strong>) que terminaban con una estrofilla final escrita en una lengua extraña: el mozárabe (el romance de los cristianos del sur). Esa estrofilla final se llama <strong>Jarcha</strong>.</p>
+                    <p>La jarcha (siglos XI-XII) es siempre la voz de una mujer joven que sufre por la ausencia o la enfermedad de su amado (habib). Para expresar su dolor, interroga a su madre o a sus hermanas en un tono desesperado y directo.</p>
                     
-                    <h3>Las Tres Grandes Ramas Líricas</h3>
-                    <ul>
-                        <li><strong>Jarchas Mozárabes (Sur - Al-Ándalus, S. XI-XII):</strong> Son las composiciones líricas más antiguas conservadas en lengua romance en Europa. Escritas en alfabeto árabe o hebreo (aljamiado), pero pronunciadas en dialecto mozárabe (el romance de los cristianos bajo dominio musulmán). Son el cierre de poemas cultos más largos llamados moaxajas. Suelen consistir en el lamento de una muchacha joven que llora por la ausencia de su amado (el <em>habib</em>), confiándose a su madre o hermanas.</li>
-                        <li><strong>Cantigas de Amigo (Noroeste - Galicia/Portugal, S. XIII-XIV):</strong> Escritas en galaicoportugués. Comparten el tema del lamento femenino, pero introducen un elemento clave: la naturaleza. La muchacha dialoga con las olas del mar, los pinos o los ciervos. Utilizan una técnica de repetición muy musical llamada <em>leixaprén</em> (deja y toma) y un estricto paralelismo.</li>
-                        <li><strong>Villancicos (Centro - Castilla, S. XV):</strong> Aunque hoy los asociamos a la Navidad, originalmente eran las "canciones de los villanos" (habitantes de las villas). Tienen una estructura métrica fija basada en cabeza, mudanza y verso de enlace, y una temática muy variada (amorosa, de vela, de siega, de romería).</li>
-                    </ul>
+                    <h3>Cantigas de Amigo: El Mar como Confidente</h3>
+                    <p>En el extremo opuesto de la Península (Galicia y el norte de Portugal), floreció entre los siglos XIII y XIV otra lírica femenina: la Cantiga de Amigo. Escrita en galaicoportugués, la muchacha también sufre por amor, pero el escenario cambia radicalmente. Ya no estamos en los patios urbanos andalusíes, sino en santuarios, romerías y costas. La joven le pregunta a las olas del mar, a los ciervos o a los pinos por el paradero de su amante.</p>
+                    
+                    <h3>Los Villancicos Castellanos</h3>
+                    <p>En Castilla (siglo XV), la canción popular cristaliza en el Villancico. Su temática es amplísima: canciones de trabajo (siega), de fiesta (mayas), de alba (los amantes que deben separarse al amanecer). Su estructura métrica es más compleja: consta de un estribillo (cabeza), una estrofa que desarrolla el tema (mudanza) y un verso que rima con el estribillo para obligar a repetirlo (verso de enlace y vuelta).</p>
                 </div>
 
                 <div class="pergamino">
-                    <div class="pergamino-title">Textos Fundacionales: Lírica Primitiva</div>
+                    <div class="pergamino-title">Textos Primitivos Completos</div>
                     
                     <div class="nota-margen">
-                        El sufrimiento físico ("enfermaron") refleja la concepción medieval del amor como una enfermedad del alma y del cuerpo (aegritudo amoris).
+                        El bilingüismo: La moaxaja estaba en árabe clásico; la jarcha, en dialecto callejero romance.
                     </div>
-                    <h4>I. Jarcha (Traducción del mozárabe)</h4>
+                    <h4>I. Jarcha Mozárabe (S. XI)</h4>
                     <div class="estrofa">
-                        <span class="verso">¡Tanto amar, tanto amar,</span>
-                        <span class="verso">amado, tanto amar!</span>
-                        <span class="verso">Enfermaron unos ojos antes sanos</span>
-                        <span class="verso">y que ahora duelen mucho.</span>
+                        <span class="verso">Garid vos, ¡ay yermaniellas!,</span>
+                        <span class="verso">¿cóm' contirné meu mali?</span>
+                        <span class="verso">Sin el habib non vivreyu:</span>
+                        <span class="verso">¿ad ob l'irey demandari?</span>
+                        <p style="font-size:1.1rem; margin-top:0.5rem;"><em>(Decidme, ¡ay hermanitas!, / ¿cómo contendré mi mal? / Sin el amado no viviré yo: / ¿adónde iré a buscarlo?)</em></p>
                     </div>
 
                     <h4>II. Cantiga de Amigo (Martín Codax, S. XIII)</h4>
                     <div class="estrofa">
-                        <span class="verso">Ondas do mar de Vigo,</span>
-                        <span class="verso">se vistes meu amigo?</span>
-                        <span class="verso">E ai Deus, se verrá cedo!</span>
+                        <span class="verso">Ay Deus, se sab'ora meu amigo</span>
+                        <span class="verso">com'eu senlleira estou en Vigo!</span>
+                        <span class="verso">E vou namorada.</span>
                     </div>
                     <div class="estrofa">
-                        <span class="verso">Ondas do mar levado,</span>
-                        <span class="verso">se vistes meu amado?</span>
-                        <span class="verso">E ai Deus, se verrá cedo!</span>
+                        <span class="verso">Ay Deus, se sab'ora meu amado</span>
+                        <span class="verso">com'eu en Vigo senlleira manho!</span>
+                        <span class="verso">E vou namorada.</span>
                     </div>
 
-                    <h4>III. Villancico Castellano (Anónimo, S. XV)</h4>
+                    <h4>III. Villancico: "Tres morillas" (S. XV)</h4>
                     <div class="estrofa">
-                        <span class="verso">Al alba venid, buen amigo,</span>
-                        <span class="verso">al alba venid.</span>
-                        <span class="verso">Amigo el que yo más quería,</span>
-                        <span class="verso">venid al alba del día.</span>
-                        <span class="verso">Amigo el que yo más amaba,</span>
-                        <span class="verso">venid a la luz del alba.</span>
+                        <span class="verso">Tres morillas me enamoran</span>
+                        <span class="verso">en Jaén:</span>
+                        <span class="verso">Axa y Fátima y Marién.</span>
+                    </div>
+                    <div class="estrofa">
+                        <span class="verso">Tres morillas tan garridas</span>
+                        <span class="verso">iban a coger olivas,</span>
+                        <span class="verso">y hallábanlas cogidas</span>
+                        <span class="verso">en Jaén:</span>
+                        <span class="verso">Axa y Fátima y Marién.</span>
                     </div>
                 </div>
 
                 <div class="retos-grid">
-                    <div class="reto-card nivel-aprendiz">
-                        <div class="reto-header">
-                            <h4>Reto 1.1: Identificación Estructural</h4>
-                            <span class="xp-badge">300 XP</span>
-                        </div>
-                        <p>Compara la Jarcha y la Cantiga de Amigo expuestas arriba. Enumera al menos tres similitudes temáticas y una diferencia crucial referida al entorno físico o receptor de las palabras de la protagonista.</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m1-1" placeholder="Similitudes: 1..., 2..., 3... Diferencia: ..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m1-1', 300)">Validar Respuesta</button>
-                            <div id="feed-m1-1" class="feedback">¡Excelente! Has detectado que ambas son lamentos femeninos por la ausencia del amado, pero en la Cantiga la confidente es la naturaleza (el mar) en lugar de la familia.</div>
-                        </div>
-                    </div>
-                    
                     <div class="reto-card nivel-oficial">
                         <div class="reto-header">
-                            <h4>Reto 1.2: El Paralelismo</h4>
-                            <span class="xp-badge">500 XP</span>
+                            <h4>Reto 1: Comentario Comparativo</h4>
+                            <span class="xp-badge">1000 XP</span>
                         </div>
-                        <p>Analiza el paralelismo en la Cantiga de Martín Codax. Explica cómo la estrofa 2 repite casi exactamente la estrofa 1 cambiando solo la última palabra de la rima (Vigo/amigo por levado/amado). ¿Qué función psicológica y musical tiene esta técnica para el pueblo analfabeto?</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m1-2" placeholder="El paralelismo funciona como..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m1-2', 500)">Validar Análisis</button>
-                            <div id="feed-m1-2" class="feedback">¡Correcto! El paralelismo facilita la memorización, crea un ritmo hipnótico e intensifica la obsesión amorosa del yo poético.</div>
-                        </div>
+                        <p>Desarrolla un texto (mínimo 100 palabras) comparando la estructura, el escenario y el receptor de la Jarcha mozárabe y la Cantiga de Amigo de Martín Codax. ¿Por qué crees que el entorno geográfico (el sur árido e islámico vs el noroeste atlántico) influye en cómo la protagonista expresa sus sentimientos?</p>
+                        <textarea id="ans-m1-1" placeholder="Inicia tu redacción formal aquí..."></textarea>
+                        <button class="btn" onclick="checkText('m1-1', 1000)">Someter Análisis</button>
+                        <div id="feed-m1-1" class="feedback">¡Excelente argumentación filológica y geográfica!</div>
                     </div>
                 </div>
             </section>
 
-            <!-- MISIÓN 2: ÉPICA Y JUGLARÍA -->
+            <!-- MISIÓN 2: ÉPICA (EXPANDIDA) -->
             <section id="mision2" class="content-section" style="display:none;">
                 <div class="mission-header">
                     <div class="badge">Misión II | Siglos XII al XIII</div>
-                    <h1>El Canto de la Espada</h1>
+                    <h1>El Honor, la Sangre y la Ley</h1>
                 </div>
-
                 <div class="theory-section">
-                    <h3>El Mester de Juglaría y la Épica</h3>
-                    <p>La palabra <em>mester</em> proviene del latín <em>ministerium</em> (oficio). El Mester de Juglaría es, por tanto, el oficio de los juglares. Eran artistas de entretenimiento que cantaban epopeyas (Cantares de Gesta) en las plazas y castillos para informar y divertir a un público heterogéneo.</p>
+                    <h3>El Debate de la Autoría del Cid</h3>
+                    <p>El único manuscrito conservado del <em>Cantar de mio Cid</em> es una copia del siglo XIV firmada por un tal <strong>Per Abbat</strong> ("Quien escribió este libro déle Dios paraíso, amén / Per Abbat le escribió en el mes de mayo..."). Durante años se debatió si Per Abbat era el autor o un mero copista. Hoy se acepta que fue un copista. La teoría predominante (Neotradicionalismo) sugiere que la obra es fruto de varios juglares anónimos que fueron añadiendo material, concretamente un juglar de San Esteban de Gormaz (más apegado a la historia real) y otro de Medinaceli (que añadió los elementos más novelescos, como el león o la afrenta a las hijas).</p>
                     
-                    <h3>El Cantar de mio Cid (hacia 1200)</h3>
-                    <p>Es la obra cumbre de la épica castellana. A diferencia de la épica francesa (como la <em>Chanson de Roland</em>), que está llena de magia y exageraciones mitológicas, el poema del Cid se caracteriza por su profundo <strong>realismo e historicidad</strong>. Narra el proceso de recuperación del honor de Rodrigo Díaz de Vivar (personaje histórico real) tras ser desterrado injustamente por el rey Alfonso VI.</p>
-                    
+                    <h3>La Psicología del Héroe: El Honor Doble</h3>
+                    <p>El motor narrativo de la obra no es la guerra contra los musulmanes (el Cid incluso se alía con reyes taifas), sino la recuperación de la honra. Hay dos caídas y dos recuperaciones:</p>
                     <ul>
-                        <li><strong>Estructura en tres cantares:</strong> 1. Cantar del Destierro (Pérdida de honra política), 2. Cantar de las Bodas (Recuperación máxima militar y conquista de Valencia), 3. Cantar de la Afrenta de Corpes (Pérdida de la honra familiar y victoria jurídica final).</li>
-                        <li><strong>Métrica:</strong> Versos anisosilábicos (de distinta medida, entre 13 y 16 sílabas), agrupados en tiradas monorrimas asonantes, divididos en dos hemistiquios por una cesura.</li>
-                        <li><strong>Recursos Juglarescos:</strong> Uso del epíteto épico ("el que en buen hora ciñó espada" para el Cid), el pleonasmo ("llorando de sus ojos"), y fórmulas apelativas para despertar al público ("Veríais allí...").</li>
+                        <li><strong>Honra Pública/Política:</strong> Al ser desterrado pierde sus tierras y el favor del rey. Lo recupera conquistando Valencia y enviando ricos regalos al monarca, demostrando que un infanzón (nobleza baja) puede ser más leal y útil que la alta nobleza cortesana.</li>
+                        <li><strong>Honra Privada/Familiar:</strong> Los Infantes de Carrión (alta nobleza) se casan con las hijas del Cid por interés económico. Tras ser humillados en Valencia (el episodio del león), se vengan azotando brutalmente a las hijas del Cid en el Robledal de Corpes. El Cid no se venga con sangre inmediata, sino que convoca unas <em>Cortes en Toledo</em> (un juicio legal), demostrando su superioridad moral y cívica.</li>
                     </ul>
                 </div>
 
                 <div class="pergamino">
-                    <div class="pergamino-title">Fragmento Magno: La Entrada en Combate y el Dolor Humano</div>
-                    
+                    <div class="pergamino-title">Fragmento Magno: La Afrenta de Corpes</div>
                     <div class="nota-margen">
-                        Fíjate en el realismo material de la escena: no hay dragones ni magia, solo la cruda realidad del abandono.
+                        El sadismo de la alta nobleza (los infantes) contrasta con la humanidad del héroe. Este clímax emocional indignaba al público medieval.
                     </div>
-                    <h4>I. El Destierro (El abandono de Vivar)</h4>
+                    <p><em>(Los Infantes de Carrión se han quedado a solas en el bosque con las hijas del Cid, Doña Elvira y Doña Sol, para consumar su venganza por haberse burlado de su cobardía).</em></p>
                     <div class="estrofa">
-                        <span class="verso">De los sus ojos tan fuertemente llorando,</span>
-                        <span class="verso">tornaba la cabeza y estábalos catando.</span>
-                        <span class="verso">Vio puertas abiertas y postigos sin candados,</span>
-                        <span class="verso">alcándaras vacías sin pieles y sin mantos</span>
-                        <span class="verso">y sin halcones y sin azores mudados.</span>
-                        <span class="verso">Suspiró mío Cid, pues tenía muy grandes cuidados.</span>
-                        <span class="verso">Habló mío Cid bien y tan mesurado:</span>
-                        <span class="verso">—¡Gracias a ti, Señor Padre, que estás en lo alto!</span>
-                        <span class="verso">¡Esto me han vuelto mis enemigos malos!</span>
+                        <span class="verso">Todos se habían ido, ellos cuatro solos son,</span>
+                        <span class="verso">así lo habían pensado los infantes de Carrión:</span>
+                        <span class="verso">—«Podéis creerlo, doña Elvira y doña Sol,</span>
+                        <span class="verso">aquí seréis escarnecidas en estos fieros bosques.</span>
+                        <span class="verso">Hoy nos separaremos y seréis abandonadas,</span>
+                        <span class="verso">no tendréis parte en las tierras de Carrión.</span>
+                        <span class="verso">Estas noticias irán al Cid Campeador,</span>
+                        <span class="verso">así nos vengaremos por la afrenta del león.»</span>
                     </div>
-
-                    <h4>II. La Batalla (El choque de caballerías)</h4>
                     <div class="estrofa">
-                        <span class="verso">Embrazan los escudos ante sus corazones,</span>
-                        <span class="verso">las lanzas ponen en ristre envueltas con los pendones,</span>
-                        <span class="verso">inclinaron las caras sobre los arzones,</span>
-                        <span class="verso">íbanlos a herir de fuertes corazones.</span>
-                        <span class="verso">A grandes voces llama el que en buen hora nació:</span>
-                        <span class="verso">«¡Heridlos, caballeros, por amor del Creador!</span>
-                        <span class="verso">¡Yo soy Ruy Díaz, el Cid, de Vivar Campeador!»</span>
-                        <span class="verso">Todos caen sobre aquel haz donde está Bermúdez, a su favor.</span>
-                        <span class="verso">Trescientas lanzas son, todas llevan pendón;</span>
-                        <span class="verso">cada uno a un moro mató de un solo golpe,</span>
-                        <span class="verso">y al dar la vuelta, otros tantos muertos son.</span>
-                        <span class="verso">Veríais allí tantas lanzas bajar y alzar...</span>
+                        <span class="verso">Allí les quitan los mantos y las pieles de armiño,</span>
+                        <span class="verso">las dejan desnudas en cuerpo, con solo la camisa y el ciclatón.</span>
+                        <span class="verso">Los malos traidores llevan espuelas calzadas,</span>
+                        <span class="verso">toman en las manos las cinchas duras y fuertes.</span>
+                        <span class="verso">Cuando esto vieron las damas, hablaba doña Sol:</span>
+                        <span class="verso">—«Por Dios os lo rogamos, don Diego y don Fernando,</span>
+                        <span class="verso">vosotros tenéis dos espadas, fuertes y afiladas,</span>
+                        <span class="verso">cortadnos las cabezas, seamos mártires las dos.</span>
+                        <span class="verso">¡Si nos azotáis, seréis vituperados!</span>
+                        <span class="verso">¡No nos hagáis tal afrenta a nosotras, por Dios!»</span>
+                    </div>
+                    <div class="estrofa">
+                        <span class="verso">Lo que ruegan las damas de nada les sirvió.</span>
+                        <span class="verso">Empiezan a golpearlas los infantes de Carrión,</span>
+                        <span class="verso">con las cinchas de cuero las azotan sin compasión,</span>
+                        <span class="verso">con las espuelas agudas, donde les duele más.</span>
+                        <span class="verso">Rompen las camisas y las carnes a las dos,</span>
+                        <span class="verso">clara sale la sangre sobre el ciclatón.</span>
+                        <span class="verso">Ya no pueden hablar doña Elvira y doña Sol,</span>
+                        <span class="verso">por muertas las dejaron en el robledal de Corpes.</span>
                     </div>
                 </div>
 
                 <div class="retos-grid">
-                    <div class="reto-card nivel-oficial">
-                        <div class="reto-header">
-                            <h4>Reto 2.1: El Héroe Humano</h4>
-                            <span class="xp-badge">400 XP</span>
-                        </div>
-                        <p>Lee detenidamente el primer texto (El Destierro). El Cid llora desconsoladamente al abandonar su hogar. En la literatura medieval, a menudo los héroes son intocables y de piedra. ¿Por qué crees que el autor decidió mostrar al Campeador llorando y suspirando en la primera escena del Cantar? ¿Qué consigue en el público?</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m2-1" placeholder="El llanto del héroe demuestra..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m2-1', 400)">Someter Análisis</button>
-                            <div id="feed-m2-1" class="feedback">¡Profundo análisis! El llanto humaniza al mito. Muestra su vulnerabilidad inicial para que la victoria posterior sea más grandiosa, logrando la empatía total del pueblo llano.</div>
-                        </div>
-                    </div>
-                    
                     <div class="reto-card nivel-maestro">
                         <div class="reto-header">
-                            <h4>Reto 2.2: Recursos Juglarescos</h4>
-                            <span class="xp-badge">600 XP</span>
+                            <h4>Reto 2: Justicia vs Venganza</h4>
+                            <span class="xp-badge">1500 XP</span>
                         </div>
-                        <p>En el texto de La Batalla, identifica: 1. Un epíteto épico aplicado al Cid. 2. Una fórmula de apelación al público (donde el juglar les habla directamente). 3. Explica cómo la descripción acelerada ("bajar y alzar") transmite el ritmo frenético del combate.</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m2-2" placeholder="1. Epíteto: ... 2. Apelación: ... 3. Ritmo: ..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m2-2', 600)">Validar Recursos</button>
-                            <div id="feed-m2-2" class="feedback">¡Dominio técnico! Has identificado "el que en buen hora nació" y "Veríais allí...". El polisíndeton y las acciones contrastadas imitan el caos de la guerra.</div>
-                        </div>
+                        <p>Tras leer el brutal fragmento de la Afrenta de Corpes, analiza la resolución del conflicto. En la Edad Media, lo habitual ante una deshonra de sangre era matar inmediatamente a los agresores en duelo o emboscada. Sin embargo, el Cid exige un juicio formal (Cortes de Toledo) presidido por el Rey. ¿Qué mensaje sociopolítico está lanzando el autor del poema sobre la baja nobleza (el Cid) frente a la alta nobleza (Carrión)?</p>
+                        <textarea id="ans-m2-1" placeholder="Desarrolla tu análisis crítico sociopolítico..."></textarea>
+                        <button class="btn" onclick="checkText('m2-1', 1500)">Validar Reflexión</button>
+                        <div id="feed-m2-1" class="feedback">¡Profundo! Has identificado cómo la obra defiende el imperio de la ley, la meritocracia militar y la mesura frente al privilegio hereditario y la brutalidad de la vieja nobleza.</div>
                     </div>
                 </div>
             </section>
 
-            <!-- MISIÓN 3: MESTER DE CLERECÍA -->
+            <!-- MISIÓN 3: CLERECÍA (EXPANDIDA) -->
             <section id="mision3" class="content-section" style="display:none;">
                 <div class="mission-header">
                     <div class="badge">Misión III | Siglos XIII y XIV</div>
-                    <h1>El Pergamino y el Compás</h1>
+                    <h1>Monjes, Pecadores y el Arcipreste</h1>
                 </div>
-
                 <div class="theory-section">
-                    <h3>La Revolución de los Clérigos</h3>
-                    <p>En el siglo XIII surge una nueva forma de hacer poesía, diametralmente opuesta a la de los juglares: el <strong>Mester de Clerecía</strong>. Impulsada por hombres de letras, eclesiásticos y universitarios, esta escuela poética busca elevar el castellano a la categoría de lengua literaria formal, traduciendo y adaptando historias latinas sobre santos, milagros y moral cristiana.</p>
+                    <h3>Gonzalo de Berceo: El Abogado de la Virgen</h3>
+                    <p>En el S. XIII, la devoción mariana (culto a la Virgen) explota en toda Europa. Berceo escribe <em>Milagros de Nuestra Señora</em> con una estructura clara en sus 25 cuentos: 1. Presentación de un personaje devoto de la Virgen (que suele ser un gran pecador, ladrón, ignorante o fornicador). 2. El personaje cae en desgracia, muere o está a punto de ser ejecutado. 3. La Virgen interviene milagrosamente para salvarlo, saltándose a menudo las leyes terrenales o incluso divinas. <strong>Moraleja:</strong> La devoción mecánica o el amor ciego a la Virgen te salva, sin importar cuán corrupta sea tu vida. Es una teología medieval muy emocional y compasiva.</p>
                     
-                    <ul>
-                        <li><strong>Conciencia de Superioridad:</strong> Los clérigos despreciaban la anarquía métrica de los juglares. Ellos contaban las sílabas meticulosamente.</li>
-                        <li><strong>La Cuaderna Vía:</strong> Su sello de identidad es esta estrofa: cuatro versos monorrimos (AAAA), de 14 sílabas (alejandrinos), divididos en dos partes iguales (hemistiquios de 7 sílabas) por una pausa (cesura).</li>
-                    </ul>
-
-                    <h3>Gonzalo de Berceo (Siglo XIII)</h3>
-                    <p>El primer poeta de nombre conocido en nuestra literatura. Su obra máxima, los <em>Milagros de Nuestra Señora</em>, narra intervenciones sobrenaturales de la Virgen para salvar a sus devotos. Berceo era un clérigo culto, pero utilizaba un tono "juglaresco" y vocabulario rural para conectar con los peregrinos del Camino de Santiago y acercarles la teología mediante anécdotas sorprendentes, a veces cómicas.</p>
-
-                    <h3>Juan Ruiz, Arcipreste de Hita (Siglo XIV)</h3>
-                    <p>Cien años después, la mentalidad ha cambiado. Hay crisis, peste y la burguesía introduce el dinero en la sociedad. Juan Ruiz escribe el <em>Libro de Buen Amor</em>, una obra monumental, ambigua, vitalista y paródica. En teoría, el libro pretende enseñar el "buen amor" (a Dios) mostrando los fracasos del "loco amor" (la lujuria), pero en la práctica, la obra es un festival de sátira, erotismo velado, crítica social y fábulas. Introduce a la mítica alcahueta Trotaconventos, antecedente directo de La Celestina.</p>
-                </div>
-                
-                <div class="deep-analysis-box">
-                    <h4>Concepto Estructural: La Ambigüedad Medieval</h4>
-                    <p>A diferencia de la literatura moderna que busca claridad narrativa, la literatura del siglo XIV abraza la contradicción moral. El Arcipreste avisa al lector: "La obra es como un instrumento musical, sonará bien o mal dependiendo de quién la toque (lea)". Es el primer paso hacia el lector activo moderno.</p>
+                    <h3>Libro de Buen Amor: La Batalla de Don Carnal y Doña Cuaresma</h3>
+                    <p>El Arcipreste de Hita (S. XIV) crea un libro poliédrico. Uno de los episodios más famosos es la parodia épica de la batalla entre Don Carnal (la carne, el exceso, la fiesta pagana, los embutidos, el vino) y Doña Cuaresma (la abstinencia religiosa, el ayuno, las verduras, el pescado). El ejército de chorizos y lechones de Carnal se enfrenta al ejército de sardinas, espinacas y merluzas de Cuaresma. Es una alegoría magistral de la dualidad del ser humano medieval: el miedo al pecado frente a las pulsiones del cuerpo.</p>
                 </div>
 
                 <div class="pergamino">
-                    <div class="pergamino-title">Fragmento Magno: La Devoción y la Sátira</div>
-                    
-                    <h4>I. Milagros de Nuestra Señora (Berceo) - Manifiesto del Mester</h4>
-                    <div class="estrofa">
-                        <span class="verso">Mester trago fermoso, non es de joglaría;</span>
-                        <span class="verso">mester es sin pecado, ca es de clerezía;</span>
-                        <span class="verso">fablar curso rimado por la cuaderna vía,</span>
-                        <span class="verso">a sílabas cuntadas, ca es grant maestría.</span>
-                    </div>
-
-                    <h4>II. Libro de Buen Amor (Arcipreste de Hita) - El Poder del Dinero</h4>
+                    <div class="pergamino-title">Fragmento Magno: La Épica Culinaria</div>
                     <div class="nota-margen">
-                        Observa la mordaz crítica a la corrupción de la justicia eclesiástica y civil mediante el poder del dinero, algo impensable un siglo antes.
+                        Fíjate en la métrica perfecta: Cuaderna Vía (14 sílabas, 4 versos monorrimos). El léxico mezcla lenguaje militar con gastronomía.
+                    </div>
+                    <h4>Libro de Buen Amor (La Batalla de Carnal y Cuaresma)</h4>
+                    <p><em>(Doña Cuaresma envía su ejército de pescados a asaltar el campamento de Don Carnal el Miércoles de Ceniza).</em></p>
+                    
+                    <div class="estrofa">
+                        <span class="verso">Puso en las delanteras muchos buenos peones:</span>
+                        <span class="verso">gallinas y perdices, conejos y capones,</span>
+                        <span class="verso">ánades y lavancos, y los gruesos ansarones;</span>
+                        <span class="verso">hacían alarde cerca, en los asadores.</span>
                     </div>
                     <div class="estrofa">
-                        <span class="verso">Hace mucho el dinero, mucho se le ha de amar;</span>
-                        <span class="verso">al torpe hace discreto, hombre de respetar,</span>
-                        <span class="verso">hace correr al cojo, al mudo le hace hablar;</span>
-                        <span class="verso">el que no tiene manos bien lo quiere tomar.</span>
+                        <span class="verso">De parte de Cuaresma venían los pescados;</span>
+                        <span class="verso">las espinadas sardinas y los congrios curados,</span>
+                        <span class="verso">las truchas y los barbos, de los ríos sacados;</span>
+                        <span class="verso">venían muy feroces, de escamas bien armados.</span>
                     </div>
                     <div class="estrofa">
-                        <span class="verso">Sea un hombre necio y un rudo labrador,</span>
-                        <span class="verso">los dineros le hacen hidalgo y sabedor;</span>
-                        <span class="verso">cuanto más algo tiene, tanto es de más valor;</span>
-                        <span class="verso">el que no tiene dineros, no es de sí señor.</span>
+                        <span class="verso">El primero de todos que hirió a don Carnal</span>
+                        <span class="verso">fue el puerro cuelliblanco, y le dio muy gran mal;</span>
+                        <span class="verso">le hizo escupir flema, esta fue la señal:</span>
+                        <span class="verso">«¡Ríndete, don Carnal, que tu fuerza no es tal!»</span>
                     </div>
                     <div class="estrofa">
-                        <span class="verso">Si tuvieres dinero, tendrás consolación,</span>
-                        <span class="verso">placer y alegría y del Papa ración,</span>
-                        <span class="verso">comprarás el paraíso, ganarás salvación:</span>
-                        <span class="verso">donde hay mucho dinero, hay mucha bendición.</span>
+                        <span class="verso">Vino luego en ayuda la salada sardina,</span>
+                        <span class="verso">hirió muy duramente a la gruesa gallina,</span>
+                        <span class="verso">se atravesó en su pico y la ahogó aína;</span>
+                        <span class="verso">don Carnal, malherido, se acoge a su cocina.</span>
                     </div>
                 </div>
 
                 <div class="retos-grid">
-                    <div class="reto-card nivel-oficial">
-                        <div class="reto-header">
-                            <h4>Reto 3.1: Análisis Métrico y Comparativo</h4>
-                            <span class="xp-badge">500 XP</span>
-                        </div>
-                        <p>Realiza la separación silábica del tercer verso de Berceo ("fablar curso rimado por la cuaderna vía"). Indica la medida de los dos hemistiquios. Después, explica por qué Berceo califica su oficio como "sin pecado" en contraposición al de los juglares.</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m3-1" placeholder="Separación: fa-blar... Análisis: ..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m3-1', 500)">Someter Análisis</button>
-                            <div id="feed-m3-1" class="feedback">¡Precisión absoluta! fa-blar/cur-so/ri-ma-do (7) // por/la/cua-der-na/ví-a (7). Consideraba que la métrica caótica de los juglares y sus temas vulgares eran imperfectos ("pecado" estético y moral).</div>
-                        </div>
-                    </div>
-
                     <div class="reto-card nivel-gran-maestro">
                         <div class="reto-header">
-                            <h4>Reto 3.2: Crítica Sociopolítica</h4>
-                            <span class="xp-badge">1000 XP</span>
+                            <h4>Reto 3: Parodia y Métrica</h4>
+                            <span class="xp-badge">2000 XP</span>
                         </div>
-                        <p>En el poema sobre el dinero de Juan Ruiz, se ataca directamente a la institución religiosa ("comprarás el paraíso", "del Papa ración"). Considerando la teoría, redacta un ensayo de al menos 8 líneas analizando cómo el cambio económico hacia una incipiente burguesía mercantil destruye los valores morales de la Edad Media temprana y justifica la ironía del Arcipreste.</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m3-2" placeholder="El auge de la economía monetaria..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m3-2', 1000)">Someter Ensayo</button>
-                            <div id="feed-m3-2" class="feedback">¡Magistral reflexión! Has diseccionado la transición ideológica: el dinero sustituye al linaje y la fe. La venta de bulas papales (paraíso) muestra la corrupción institucional que el Arcipreste satiriza brillantemente.</div>
-                        </div>
+                        <p>Realiza la escansión métrica del verso: "Vino luego en ayuda la salada sardina" (cuenta sílabas e indica la cesura). Después, explica cómo el Arcipreste está utilizando los recursos formales y el vocabulario de la poesía ÉPICA (que se usaba para cantar al Cid) para describir una pelea de alimentos. ¿Qué efecto busca producir en el lector?</p>
+                        <textarea id="ans-m3-1" placeholder="Métrica: ... Análisis literario de la parodia: ..."></textarea>
+                        <button class="btn" onclick="checkText('m3-1', 2000)">Validar Respuesta Completa</button>
+                        <div id="feed-m3-1" class="feedback">¡Brillante! Vi-no-lue-goen-a-yu-da (7) // la-sa-la-da-sar-di-na (7). Al usar el formato épico solemne para algo cotidiano y ridículo crea un efecto cómico paródico inigualable.</div>
                     </div>
                 </div>
             </section>
 
-            <!-- MISIÓN 4: LA PROSA Y EL ROMANCERO -->
+            <!-- MISIÓN 4: PROSA (EXPANDIDA) -->
             <section id="mision4" class="content-section" style="display:none;">
                 <div class="mission-header">
-                    <div class="badge">Misión IV | Siglos XIII al XV</div>
-                    <h1>Castillos de Papel</h1>
+                    <div class="badge">Misión IV | Siglos XIII y XIV</div>
+                    <h1>La Forja de la Prosa y el Romancero</h1>
                 </div>
-
                 <div class="theory-section">
-                    <h3>El Nacimiento de la Prosa Literaria</h3>
-                    <p>Mientras la poesía dominaba los siglos previos, la prosa castellana tardó más en desarrollarse. Fue el rey <strong>Alfonso X el Sabio</strong> quien, en el siglo XIII, dio el paso decisivo al usar el castellano (en lugar del latín) para la historia, la astronomía y las leyes en la Escuela de Traductores de Toledo, estableciendo la primera norma ortográfica.</p>
+                    <h3>Don Juan Manuel y la Manipulación de la Realidad</h3>
+                    <p>En el Cuento de "Los pícaros que tejieron la tela" (El Conde Lucanor), Don Juan Manuel nos presenta la historia de unos estafadores que prometen tejer una tela invisible para aquellos que no sean hijos legítimos de sus padres (el famoso cuento que siglos después adaptaría Hans Christian Andersen como "El traje del emperador"). El cuento medieval es mucho más crudo, ya que la amenaza no es ser tonto, sino ser bastardo (lo que implicaba perder las herencias y el estatus social). Toda la corte, incluido el Rey, finge ver la tela desnuda por terror social, hasta que un hombre negro (que no tiene nada que perder socialmente) dice la verdad.</p>
                     
-                    <h3>Don Juan Manuel y <em>El Conde Lucanor</em> (Siglo XIV)</h3>
-                    <p>Sobrino de Alfonso X, fue el primer autor con una profunda y obsesiva "conciencia de estilo". Quería escribir de forma clara, directa y perfecta, revisando él mismo las copias de sus libros. Su gran obra, <em>El Conde Lucanor</em> (1335), es una colección de 51 cuentos (<em>exempla</em>) con un propósito didáctico-moral.</p>
-                    <ul>
-                        <li><strong>Estructura Inamovible:</strong> 1. El Conde Lucanor expone un problema político/social a su consejero Patronio. 2. Patronio le dice que le contará un cuento para darle la solución. 3. Se narra la historia (casi siempre adaptaciones de cuentos árabes o clásicos). 4. Patronio extrae el consejo. 5. Don Juan Manuel (el autor) entra en el libro, dice que le gustó el ejemplo, lo manda escribir y resume la moraleja en un pareado (dos versos rimados).</li>
-                    </ul>
-
-                    <h3>El Romancero Viejo (Siglo XV)</h3>
-                    <p>Al mismo tiempo, el pueblo (harto de los larguísimos y pesados cantares de gesta) empezó a pedir a los juglares que cantaran solo las partes más dramáticas y emocionantes. Al separar un fragmento cantado, nació el <strong>Romance</strong>: poemas épico-líricos, de versos octosílabos, rima asonante en los pares, con diálogos intensos, saltos narrativos y finales a menudo abruptos (truncados).</p>
-                </div>
-
-                <div class="deep-analysis-box">
-                    <h4>Concepto Estructural: El Cuento Enmarcado</h4>
-                    <p>La técnica de la "caja china" o la historia dentro de la historia (frame-story) llega a España desde Oriente Medio y la India. Permite crear una distancia psicológica, haciendo que la crítica social del cuento interior parezca ficción inocente frente a la realidad del narrador exterior.</p>
+                    <h3>El Romancero: El Misterio y el Final Truncado</h3>
+                    <p>Mientras la prosa se volvía didáctica, el pueblo destilaba la épica convirtiéndola en Romances. El <em>Romance del Conde Arnaldos</em> es la máxima expresión del misterio poético. El final del romance se corta abruptamente; no sabemos qué le pasa al Conde, si sube al barco encantado, si muere o si aprende el canto mágico. Ese silencio final es la cumbre de la estética del romancero.</p>
                 </div>
 
                 <div class="pergamino">
-                    <div class="pergamino-title">Fragmento Magno: La Sabiduría y la Muerte</div>
-                    
-                    <h4>I. El Conde Lucanor (Cuento VII - Doña Truhana)</h4>
-                    <p>—Señor conde Lucanor —dijo Patronio—, siempre oí decir que el prudente se atiene a las realidades y desecha las fantasías, pues muchas veces a quienes viven de ellas les sucede lo que a doña Truhana.</p>
-                    <p>El conde le preguntó qué le había pasado.</p>
-                    <p>—Señor conde —dijo Patronio—, había una mujer que se llamaba doña Truhana, que era más pobre que rica, la cual, yendo un día al mercado, llevaba una olla de miel en la cabeza. Mientras iba por el camino, empezó a pensar que vendería la miel y que, con lo que le dieran, compraría una partida de huevos, de los cuales nacerían gallinas, y que luego, con el dinero que le dieran por las gallinas, compraría ovejas, y así fue comprando con las ganancias hasta que se vio más rica que ninguna de sus vecinas. [...]</p>
-                    <p>Al pensar en esto, empezó a reírse con mucha alegría por su buena suerte, y, riendo, se dio una palmada en la frente, con lo que la olla cayó al suelo y se rompió en pedazos. Al ver la olla rota, empezó a llorar, porque había perdido todo lo que pensaba tener si la olla no se le hubiera roto. Y porque puso toda su confianza en fantasías, no logró nada de lo que esperaba.</p>
-                    <p><em>(Moraleja final de Don Juan Manuel):</em></p>
-                    <div class="estrofa">
-                        <span class="verso" style="font-weight: bold;">A las cosas ciertas confiad vuestros afanes,</span>
-                        <span class="verso" style="font-weight: bold;">y no a las esperanzas ni a los sueños vanos.</span>
-                    </div>
-
-                    <br><hr style="border-top: 1px dashed #d97706; margin: 2rem 0;"><br>
-
-                    <h4>II. Romance del Prisionero (Anónimo)</h4>
+                    <div class="pergamino-title">Fragmento Magno: El Poder Oculto de la Voz</div>
                     <div class="nota-margen">
-                        El brutal contraste entre el locus amoenus (el mundo en primavera exterior) y el infierno de la prisión.
+                        El barco representa el mundo de lo mágico, lo sobrenatural o la muerte. El canto domina a las fuerzas de la naturaleza.
                     </div>
+                    <h4>Romance del Conde Arnaldos (Anónimo)</h4>
                     <div class="estrofa">
-                        <span class="verso">Que por mayo era, por mayo,</span>
-                        <span class="verso">cuando hace la calor,</span>
-                        <span class="verso">cuando los trigos encañan</span>
-                        <span class="verso">y están los campos en flor,</span>
-                        <span class="verso">cuando canta la calandria</span>
-                        <span class="verso">y responde el ruiseñor,</span>
-                        <span class="verso">cuando los enamorados</span>
-                        <span class="verso">van a servir al amor;</span>
-                        <span class="verso">sino yo, triste, cuitado,</span>
-                        <span class="verso">que vivo en esta prisión,</span>
-                        <span class="verso">que ni sé cuándo es de día</span>
-                        <span class="verso">ni cuándo las noches son,</span>
-                        <span class="verso">sino por una avecilla</span>
-                        <span class="verso">que me cantaba al albor.</span>
-                        <span class="verso">Matómela un ballestero,</span>
-                        <span class="verso">déle Dios mal galardón.</span>
-                    </div>
-                </div>
-
-                <div class="retos-grid">
-                    <div class="reto-card nivel-maestro">
-                        <div class="reto-header">
-                            <h4>Reto 4.1: Estructura y Función de la Rima</h4>
-                            <span class="xp-badge">800 XP</span>
-                        </div>
-                        <p>En el Cuento de Doña Truhana (origen del cuento de la Lechera), Don Juan Manuel decide incluir un pareado (dos versos rimados) al final de una narración completamente en prosa. ¿Cuál es el propósito cognitivo y nemotécnico de condensar la moraleja en rima al final del relato? Identifica los 5 pasos de la estructura en el texto.</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m4-1" placeholder="La rima funciona como... Los 5 pasos son..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m4-1', 800)">Validar Respuesta</button>
-                            <div id="feed-m4-1" class="feedback">¡Sublime! La rima actúa como un "ancla de memoria" para fijar la doctrina en la mente del lector noble. Has desgranado perfectamente el marco narrativo.</div>
-                        </div>
-                    </div>
-                    
-                    <div class="reto-card nivel-gran-maestro">
-                        <div class="reto-header">
-                            <h4>Reto 4.2: Tensión y Fragmentarismo en el Romancero</h4>
-                            <span class="xp-badge">1200 XP</span>
-                        </div>
-                        <p>Analiza el "Romance del Prisionero". 1. Señala su métrica (tipo de verso y rima). 2. Explica cómo la conjunción adversativa "sino" divide el poema en dos mundos opuestos. 3. Analiza el final "truncado" (abrupto): ¿Qué aporta literariamente que el poema termine de golpe con la muerte del pájaro sin saber el destino del prisionero?</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m4-2" placeholder="1. Métrica: ... 2. Contraste: ... 3. Final abrupto: ..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m4-2', 1200)">Someter Análisis Avanzado</button>
-                            <div id="feed-m4-2" class="feedback">¡Análisis doctoral! Verso octosílabo, asonante en aguda (-o). El contraste entre la vida/libertad y la muerte/aislamiento se intensifica con el corte dramático final, dejando al lector atrapado en la desesperación sin resolución.</div>
-                        </div>
+                        <span class="verso">¡Quién hubiese tal ventura</span>
+                        <span class="verso">sobre las aguas del mar,</span>
+                        <span class="verso">como hubo el conde Arnaldos</span>
+                        <span class="verso">la mañana de San Juan!</span>
+                        <span class="verso">Con un halcón en la mano</span>
+                        <span class="verso">la caza iba a cazar,</span>
+                        <span class="verso">vio venir una galera</span>
+                        <span class="verso">que a tierra quiere llegar.</span>
+                        <span class="verso">Las velas traía de seda,</span>
+                        <span class="verso">la jarcia de un cendal,</span>
+                        <span class="verso">marinero que la manda</span>
+                        <span class="verso">diciendo viene un cantar</span>
+                        <span class="verso">que la mar ponía en calma,</span>
+                        <span class="verso">los vientos hace amainar,</span>
+                        <span class="verso">los peces que andan al hondo</span>
+                        <span class="verso">arriba los hace andar,</span>
+                        <span class="verso">las aves que andan volando</span>
+                        <span class="verso">en el mástil las hace posar.</span>
+                        <span class="verso">Allí habló el conde Arnaldos,</span>
+                        <span class="verso">bien oiréis lo que dirá:</span>
+                        <span class="verso">—«Por Dios te ruego, marinero,</span>
+                        <span class="verso">dígasme ora ese cantar.»</span>
+                        <span class="verso">Respondióle el marinero,</span>
+                        <span class="verso">tal respuesta le fue a dar:</span>
+                        <span class="verso">—«Yo no digo esta canción</span>
+                        <span class="verso">sino a quien conmigo va.»</span>
                     </div>
                 </div>
             </section>
 
-            <!-- MISIÓN 5: EL PRERRENACIMIENTO Y LA CELESTINA -->
+            <!-- MISIÓN 5: CELESTINA (EXPANDIDA) -->
             <section id="mision5" class="content-section" style="display:none;">
                 <div class="mission-header">
-                    <div class="badge">Misión V | Siglo XV</div>
-                    <h1>El Ocaso y la Piel: La Celestina</h1>
+                    <div class="badge">Misión V | 1499</div>
+                    <h1>Magia, Lujuria y Muerte</h1>
                 </div>
-
                 <div class="theory-section">
-                    <h3>El Siglo de la Crisis (Prerrenacimiento)</h3>
-                    <p>El siglo XV es un terremoto social. El viejo orden feudal y el teocentrismo absoluto mueren lentamente. Las universidades se llenan de ideas humanistas (antropocentrismo), la burguesía impone el valor del comercio, y la obsesión por la Muerte (que iguala a reyes y campesinos, como en las <em>Danzas de la Muerte</em>) tiñe el arte. En este clima crepuscular brillan Jorge Manrique y, sobre todo, Fernando de Rojas con <strong>La Celestina</strong> (1499).</p>
+                    <h3>El Contexto Sociopolítico: Conversos y Pesimismo</h3>
+                    <p>Fernando de Rojas era un judío converso (su familia fue obligada a bautizarse). Vivían bajo la constante sospecha de la Inquisición, ocultando sus verdaderas creencias. Esto genera en Rojas una visión del mundo profundamente pesimista, oscura y cínica, sin esperanza en la salvación cristiana. En <em>La Celestina</em>, no hay justicia divina. Todos los personajes mueren por su propia avaricia y lujuria, aplastados por el azar o la gravedad.</p>
                     
-                    <h3>La Celestina: Comedia Humanística</h3>
-                    <p>Originalmente titulada <em>Tragicomedia de Calisto y Melibea</em>, la obra está escrita íntegramente en diálogo (formato teatral o comedia humanística para ser leída en voz alta). Refleja una sociedad podrida por la codicia, el egoísmo y la lujuria. Ya no hay héroes épicos. Los personajes nobles (Calisto y Melibea) son parodias de sí mismos, cegados por la pasión carnal (<em>loco amor</em>) y utilizando un lenguaje hiperculto y artificioso. Los personajes bajos (Celestina, Pármeno, Sempronio, Areúsa) son tremendamente pragmáticos, vivos, astutos y hablan con refranes populares y lenguaje sucio.</p>
-                    <p><strong>El personaje de Celestina:</strong> Es uno de los hitos de la literatura universal. Puta vieja, hechicera, alcahueta y vendedora de afeites, es una emprendedora amoral en una sociedad patriarcal que usa la psicología, la oratoria y la manipulación (y un poco de magia negra) para dominar a todos, ricos y pobres. La codicia de todos los personajes los llevará a un final de destrucción absoluta.</p>
+                    <h3>El Poder Psicológico de Celestina</h3>
+                    <p>Celestina no es solo una bruja de cuento. Es una maestra de la persuasión, la psicología y la oratoria. En el famoso encuentro con Melibea, Celestina sabe que si menciona directamente a Calisto, la joven (guardiana de su honor) la echará a patadas. Así que usa una estrategia retórica brillante: primero apela a su piedad (le pide un cordón santo para curar un dolor de muelas de un "enfermo"), y solo cuando Melibea ha bajado las defensas, revela el nombre de Calisto, provocando la furia inicial y la posterior rendición de la joven.</p>
                 </div>
 
                 <div class="pergamino">
-                    <div class="pergamino-title">Fragmento Magno: La Herejía y la Manipulación</div>
-                    
-                    <h4>Acto I - La declaración de Calisto</h4>
-                    <p><strong>CALISTO:</strong> En esto veo, Melibea, la grandeza de Dios.</p>
-                    <p><strong>MELIBEA:</strong> ¿En qué, Calisto?</p>
-                    <p><strong>CALISTO:</strong> En dar poder a natura que de tan perfecta hermosura te dotase, y hacer a mí, inmérito, tanta merced que verte alcanzase [...] ¿Qué glorioso bienaventurado de los que ven la divina faz se goza más que yo ahora contemplándote?</p>
-                    <p><strong>MELIBEA:</strong> ¿Por gran premio tienes éste, Calisto?</p>
-                    <p><strong>CALISTO:</strong> Téngolo por tanto, que si Dios me diese en el cielo la silla sobre sus santos, no lo tendría por tanta felicidad.</p>
-                    <p><strong>MELIBEA:</strong> Pues aún más igual galardón te daré yo si perseveras. Vete de ahí, torpe, que no puede mi paciencia tolerar que haya subido en corazón humano el intentar el ilícito amor de mi castidad.</p>
-
-                    <br><hr style="border-top: 1px dashed #d97706; margin: 2rem 0;"><br>
-                    
-                    <h4>Acto I - Calisto habla con su criado Sempronio</h4>
-                    <p><strong>SEMPRONIO:</strong> ¿Tú no eres cristiano?</p>
-                    <p><strong>CALISTO:</strong> ¿Yo? Melibeo soy, y a Melibea adoro, y en Melibea creo, y a Melibea amo.</p>
-                </div>
-
-                <div class="retos-grid">
-                    <div class="reto-card nivel-maestro">
-                        <div class="reto-header">
-                            <h4>Reto 5.1: La Religión Parodiada</h4>
-                            <span class="xp-badge">1000 XP</span>
-                        </div>
-                        <p>Analiza el discurso de Calisto ante Melibea y Sempronio. El concepto del "Amor Cortés" elevaba a la mujer a la categoría de deidad. ¿Por qué las palabras de Calisto ("si Dios me diese la silla sobre sus santos", "Melibeo soy") suponen una herejía monumental en la época? Relaciona esta locura de amor con la pérdida del orden medieval.</p>
-                        <div class="interactive-area">
-                            <textarea id="ans-m5-1" placeholder="Desarrolla tu análisis crítico argumentativo..."></textarea>
-                            <button class="btn" onclick="checkAnswer('m5-1', 1000)">Someter Análisis Psicológico</button>
-                            <div id="feed-m5-1" class="feedback">¡Excepcional! Has comprendido que la parodia religiosa demuestra el triunfo del individualismo renacentista frente a la ortodoxia cristiana medieval. Calisto es un fanático del "loco amor".</div>
-                        </div>
+                    <div class="pergamino-title">Fragmento Magno: La Seducción Retórica</div>
+                    <div class="nota-margen">
+                        Observa cómo Celestina manipula las palabras para sugerir lo carnal disfrazándolo de caridad cristiana.
                     </div>
+                    <p><strong>CELESTINA:</strong> Mi petición es, señora, un ruego por un enfermo a quien una palabra tuya, salida de esa noble boca, le puede dar la vida... Déjame, señora, concluir mi habla, que no te ofenderá el nombre de quien se muere por ti.</p>
+                    <p><strong>MELIBEA:</strong> ¡Di, maldita, di a quién pides remedio!</p>
+                    <p><strong>CELESTINA:</strong> A un caballero, noble, mancebo, muy gentil hombre, llamado Calisto...</p>
+                    <p><strong>MELIBEA:</strong> ¡Jesús! ¡Jesús! ¡Mátala, mi Dios! ¡Quítamela de delante a esta pecadora, falsa, alcahueta, hechicera! ¿Por él me pides remedio? ¿Ese es el enfermo? ¡Ay de ti si no te fueras, te mandaría quemar viva!</p>
+                    <p><strong>CELESTINA:</strong> <em>(Aparte)</em> En mal punto me he metido. ¡Más vale maña que fuerza! <em>(A Melibea)</em> Señora, detén tu ira. No me dejaste acabar. El remedio que le pido no es para su amor, sino que tiene un dolor de muelas terrible, y me dijeron que tienes un cordón que ha tocado las reliquias de Roma, y una oración escrita de tu mano que lo curaría...</p>
+                    <p><strong>MELIBEA:</strong> ¿Y eso querías? ¿Por qué no me lo dijiste antes? Si es para un dolor tan grande, y por caridad, te daré el cordón.</p>
                 </div>
             </section>
 
-            <!-- SECCIÓN LOMLOE ANDALUCÍA -->
+            <!-- MISIÓN 6: EL GRAN TORNEO (JUEGOS INTERACTIVOS) -->
+            <section id="mision6" class="content-section" style="display:none;">
+                <div class="mission-header">
+                    <div class="badge">El Gran Torneo</div>
+                    <h1>Demuestra tu Maestría</h1>
+                    <p style="font-size: 1.3rem; color: var(--text-muted);">Supera los desafíos interactivos para alcanzar el rango de Gran Maestre.</p>
+                </div>
+
+                <!-- JUEGO 1: ARRASTRAR Y SOLTAR -->
+                <div class="deep-analysis-box" style="text-align: left;">
+                    <h4>Reto 6.1: Conceptos Literarios (Arrastrar y Soltar) <span class="xp-badge" style="float:right;">+1000 XP</span></h4>
+                    <p>Arrastra cada concepto a su definición correcta correspondiente a la literatura medieval.</p>
+                    
+                    <div class="drag-container">
+                        <div class="drag-items" id="drag-items">
+                            <div class="draggable" draggable="true" id="d1">Cuaderna Vía</div>
+                            <div class="draggable" draggable="true" id="d2">Mester de Juglaría</div>
+                            <div class="draggable" draggable="true" id="d3">Moaxaja</div>
+                            <div class="draggable" draggable="true" id="d4">Romance</div>
+                        </div>
+                        <div class="drop-zones">
+                            <div class="drop-zone" data-target="d2"><span>Oficio de transmisión oral, épico e irregular</span></div>
+                            <div class="drop-zone" data-target="d1"><span>Estrofa de 4 versos alejandrinos monorrimos</span></div>
+                            <div class="drop-zone" data-target="d4"><span>Poema de versos octosílabos con rima asonante en los pares</span></div>
+                            <div class="drop-zone" data-target="d3"><span>Poema culto árabe/hebreo que termina con una jarcha</span></div>
+                        </div>
+                    </div>
+                    <button class="btn" style="margin-top: 2rem;" onclick="checkDragAndDrop()">Validar Enlaces</button>
+                    <div id="feed-dnd" class="feedback">¡Perfecto! Has dominado los conceptos formales.</div>
+                </div>
+
+                <!-- JUEGO 2: ORDEN CRONOLÓGICO -->
+                <div class="deep-analysis-box" style="text-align: left;">
+                    <h4>Reto 6.2: La Flecha del Tiempo <span class="xp-badge" style="float:right;">+1000 XP</span></h4>
+                    <p>Ordena cronológicamente (del más antiguo arriba, al más moderno abajo) haciendo clic en los botones de subir/bajar (↕).</p>
+                    
+                    <ul class="sortable-list" id="sortable-list">
+                        <li class="sortable-item" data-order="5"><span>📘 La Celestina (Transición al Renacimiento)</span> <div style="margin-left:auto; cursor:pointer;" onclick="moveItem(this, -1)">⬆️</div> <div style="cursor:pointer;" onclick="moveItem(this, 1)">⬇️</div></li>
+                        <li class="sortable-item" data-order="1"><span>📜 Jarchas Mozárabes (Primeras manifestaciones)</span> <div style="margin-left:auto; cursor:pointer;" onclick="moveItem(this, -1)">⬆️</div> <div style="cursor:pointer;" onclick="moveItem(this, 1)">⬇️</div></li>
+                        <li class="sortable-item" data-order="3"><span>⛪ Gonzalo de Berceo (Mester de Clerecía temprano)</span> <div style="margin-left:auto; cursor:pointer;" onclick="moveItem(this, -1)">⬆️</div> <div style="cursor:pointer;" onclick="moveItem(this, 1)">⬇️</div></li>
+                        <li class="sortable-item" data-order="4"><span>👑 Don Juan Manuel (Prosa estructurada)</span> <div style="margin-left:auto; cursor:pointer;" onclick="moveItem(this, -1)">⬆️</div> <div style="cursor:pointer;" onclick="moveItem(this, 1)">⬇️</div></li>
+                        <li class="sortable-item" data-order="2"><span>⚔️ Cantar de mio Cid (Apogeo de la Épica)</span> <div style="margin-left:auto; cursor:pointer;" onclick="moveItem(this, -1)">⬆️</div> <div style="cursor:pointer;" onclick="moveItem(this, 1)">⬇️</div></li>
+                    </ul>
+                    <button class="btn" style="margin-top: 2rem;" onclick="checkSort()">Validar Cronología</button>
+                    <div id="feed-sort" class="feedback">¡Línea temporal restaurada con éxito!</div>
+                </div>
+
+                <!-- JUEGO 3: TRIVIAL MEDIEVAL -->
+                <div class="trivial-container">
+                    <h4>Reto 6.3: El Trivial de los Sabios <span class="xp-badge">+2000 XP</span></h4>
+                    <div id="trivial-quiz">
+                        <div class="trivial-question" id="t-question">Cargando Trivial...</div>
+                        <div class="trivial-options" id="t-options"></div>
+                    </div>
+                    <div id="feed-trivial" class="feedback" style="background:var(--bg-card); color:var(--gold-primary);"></div>
+                </div>
+
+                <!-- JUEGO 4: EL ROSCO LITERARIO -->
+                <div class="deep-analysis-box" style="margin-top: 4rem;">
+                    <h4>Reto 6.4: El Rosco del Códice <span class="xp-badge">+5000 XP</span></h4>
+                    <p>Completa el abecedario con los términos correctos de la literatura medieval.</p>
+                    
+                    <div class="rosco-wrapper" id="rosco-wrapper">
+                        <!-- Letras inyectadas por JS -->
+                        <div class="rosco-center">
+                            <h1 id="rosco-current-letter" style="font-size: 3rem; margin-bottom: 0;">A</h1>
+                            <div class="rosco-def" id="rosco-def">Empieza por A: Autor anónimo de los Cantares de Gesta.</div>
+                            <input type="text" id="rosco-input" class="rosco-input" placeholder="Escribe tu respuesta..." autocomplete="off">
+                            <button class="btn" onclick="checkRoscoAnswer()" style="padding: 1rem;">Comprobar</button>
+                            <button class="btn" onclick="skipRosco()" style="padding: 0.5rem; margin-top: 0.5rem; background: transparent; border-color: #666; font-size: 0.9rem;">Pasapalabra</button>
+                        </div>
+                    </div>
+                    <div id="feed-rosco" class="feedback">¡Has completado el Rosco! Eres un Gran Maestre de la Orden.</div>
+                </div>
+
+            </section>
+
+            <!-- ANEXO LOMLOE -->
             <section id="lomloe" class="content-section" style="display:none;">
                 <div class="lomloe-container">
-                    <h2>Anexo Docente: Fundamentación Curricular y Rúbrica LOMLOE (Andalucía)</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
-                        Esta unidad didáctica inmersiva desarrolla integralmente el currículo de la etapa de Bachillerato. El objetivo de la materia de Lengua Castellana y Literatura se orienta a garantizar una eficacia comunicativa en la producción, recepción e interacción oral y escrita[cite: 14]. Además, tal como indica la normativa, promueve el uso ético del lenguaje que ponga las palabras al servicio de la convivencia democrática y el espíritu crítico[cite: 14]. El conocimiento de este legado y su evolución desde el latín enriquece profundamente el juicio crítico y estético[cite: 1].
+                    <h2>Anexo Curricular LOMLOE (Andalucía)</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.8;">
+                        Esta unidad gamificada justifica legal y pedagógicamente su estructura basándose en la normativa vigente. La materia de Lengua Castellana y Literatura se orienta a <strong>garantizar una eficacia comunicativa en la producción, recepción e interacción oral, escrita y multimodal</strong>[cite: 14], así como a favorecer un <strong>uso ético del lenguaje</strong> que ponga las palabras al servicio de la convivencia democrática y la resolución dialogada de conflictos[cite: 14]. El conocimiento de nuestro legado clásico latino, del cual emana el castellano, enriquece el juicio crítico y estético[cite: 1].
                     </p>
-                    
-                    <h3>Matriz de Saberes Básicos y Competencias Específicas (CE)</h3>
                     <table class="lomloe-table">
                         <thead>
                             <tr>
-                                <th>Misión / Entorno de Aprendizaje</th>
-                                <th>Competencias Específicas (CE) Desarrolladas</th>
-                                <th>Conexión con el Legado y Saberes</th>
+                                <th>Desafíos y Misiones</th>
+                                <th>Competencias Específicas LOMLOE</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Misión I:</strong> Lírica Tradicional</td>
-                                <td>
-                                    <span class="competencia-tag">CE 8: Educación Literaria</span>
-                                    <span class="competencia-tag">CE 1: Diversidad Lingüística</span>
-                                </td>
-                                <td>El alumnado desarrolla la comprensión lectora reconociendo las influencias de las distintas lenguas peninsulares (mozárabe, galaicoportugués) y valorando la diversidad lingüística, relacionando lenguas romances procedentes del latín[cite: 2, 3].</td>
+                                <td>Misión I (Lírica) y Misión II (Épica)</td>
+                                <td><span class="competencia-tag">CE 8: Educación Literaria</span><br>Comprensión del patrimonio cultural, desarrollando la sensibilidad estética y el respeto por la evolución lingüística desde el latín vulgar[cite: 2, 3].</td>
                             </tr>
                             <tr>
-                                <td><strong>Misiones II y III:</strong> Épica y Clerecía</td>
-                                <td>
-                                    <span class="competencia-tag">CE 4: Comprensión Crítica de Textos</span>
-                                    <span class="competencia-tag">CE 9: Reflexión Metalingüística</span>
-                                </td>
-                                <td>Análisis de la genealogía de textos que consolidan la identidad histórica. El Mester de Clerecía requiere de un acercamiento filológico y el análisis de estructuras sintácticas heredadas de los textos latinos[cite: 3].</td>
+                                <td>Misión III (Clerecía) y Juegos Trivial/Rosco</td>
+                                <td><span class="competencia-tag">CE 4: Comprensión Crítica</span><span class="competencia-tag">CE 9: Reflexión Metalingüística</span><br>Análisis y consolidación del léxico, identificando mecanismos sintácticos y formales heredados de textos literarios latinos[cite: 1, 3].</td>
                             </tr>
                             <tr>
-                                <td><strong>Misiones IV y V:</strong> Prosa, Romancero y Celestina</td>
-                                <td>
-                                    <span class="competencia-tag">CE 5: Producción Escrita Compleja</span>
-                                    <span class="competencia-tag">CE 10: Ética Comunicativa y Ciudadanía</span>
-                                </td>
-                                <td>La creación de textos analíticos fomenta el debate sobre el uso ético del lenguaje, analizando la manipulación retórica (Celestina) y la moralidad del poder (Conde Lucanor) para construir una ciudadanía comprometida[cite: 4].</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h3>Rúbrica de Calificación Integrada (Gamificada por XP)</h3>
-                    <table class="lomloe-table">
-                        <thead>
-                            <tr>
-                                <th>Grado de Consecución LOMLOE</th>
-                                <th>Puntos de Experiencia (XP)</th>
-                                <th>Calificación Tradicional</th>
-                                <th>Descriptores de Evaluación (Criterios de Excelencia)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Excelente:</strong> Gran Maestre de la Orden</td>
-                                <td>8000 - 10000 XP</td>
-                                <td>9 - 10</td>
-                                <td>El alumno asume un proceso creativo complejo inseparable de su contexto histórico, sociopolítico y artístico[cite: 3]. Redacción brillante, con justificación metalingüística profunda y conexión intertextual[cite: 2].</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Adecuado:</strong> Maestro Clérigo / Oficial Escribano</td>
-                                <td>4000 - 7999 XP</td>
-                                <td>7 - 8</td>
-                                <td>El alumno comprende críticamente ideas relativas a la propia identidad, vida pública y privada del texto literario medieval[cite: 1]. Argumenta con solidez y capta los recursos retóricos fundamentales.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Suficiente:</strong> Aprendiz de Juglar</td>
-                                <td>1500 - 3999 XP</td>
-                                <td>5 - 6</td>
-                                <td>Identifica los formantes estructurales básicos. La traducción/comprensión de las ideas literarias es elemental pero correcta, sin llegar a la reflexión sociopolítica profunda[cite: 3].</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Insuficiente:</strong> Neófito en Formación</td>
-                                <td>< 1500 XP</td>
-                                <td>< 5</td>
-                                <td>No se garantiza una eficacia comunicativa en la producción escrita; análisis textual muy pobre o nulo; incapaz de conectar el texto literario con su dimensión social[cite: 14].</td>
+                                <td>Misión V (Celestina)</td>
+                                <td><span class="competencia-tag">CE 10: Ética Comunicativa</span><br>Fomenta un uso ético del lenguaje, analizando la manipulación retórica (Celestina) frente a la comunicación democrática y transparente requerida hoy[cite: 14].</td>
                             </tr>
                         </tbody>
                     </table>
@@ -695,137 +586,315 @@
         </main>
     </div>
 
-    <!-- =========================================================
-         SISTEMA LÓGICO DE LA APLICACIÓN (Vanilla JavaScript)
-         ========================================================= -->
     <script>
-        // Configuración y variables de estado del estudiante
+        /* ==========================================
+           LÓGICA PRINCIPAL Y NAVEGACIÓN
+           ========================================== */
         let totalXP = 0;
-        const maxXP = 10000;
-        const STORAGE_KEY = 'codiceTiempo_Integral_LOMLOE';
+        const maxXP = 25000;
         
         document.addEventListener('DOMContentLoaded', () => {
-            loadProgress();
-            updateDashboard();
+            initDragAndDrop();
+            initTrivial();
+            initRosco();
             
-            // Navegación por anclas para facilitar repositorios web como GitHub Pages
             const hash = window.location.hash.replace('#', '');
-            if(hash) {
-                showSection(hash);
-            }
+            if(hash) showSection(hash);
         });
 
         function showSection(sectionId) {
-            // Ocultar paneles y remover clases activas
             document.querySelectorAll('.content-section').forEach(sec => sec.style.display = 'none');
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             
-            // Mostrar la sección correspondiente
             const targetSection = document.getElementById(sectionId);
             if(targetSection) {
                 targetSection.style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-                // Activar el link de la barra lateral
                 document.querySelectorAll('.nav-link').forEach(link => {
-                    if(link.getAttribute('onclick').includes(sectionId)) {
-                        link.classList.add('active');
-                    }
+                    if(link.getAttribute('onclick').includes(sectionId)) link.classList.add('active');
                 });
-                
-                // Actualizar historial del navegador sin recargar la página
                 history.pushState(null, null, '#' + sectionId);
             }
         }
 
-        function checkAnswer(challengeId, xpReward) {
+        function checkText(challengeId, xp) {
             const textarea = document.getElementById('ans-' + challengeId);
-            const feedback = document.getElementById('feed-' + challengeId);
             const btn = textarea.nextElementSibling;
+            const feedback = document.getElementById('feed-' + challengeId);
             
-            // Validación de longitud estricta para Bachillerato (Mínimo de caracteres exigente)
-            const minLength = 60; 
-            if (textarea.value.trim().length < minLength) {
-                alert(`⚠️ Atención, Iniciado: Tu análisis es demasiado breve. Exigimos un mínimo de desarrollo argumentativo para Bachillerato. Elabora más tu respuesta (mínimo ${minLength} caracteres).`);
-                textarea.focus();
+            if (textarea.value.trim().length < 60) {
+                alert("Debes elaborar más tu respuesta (mínimo 60 caracteres).");
                 return;
             }
             
-            // Simulación de validación pedagógica y otorgamiento de XP
             textarea.disabled = true;
             btn.disabled = true;
-            btn.innerText = "✓ DESAFÍO SUPERADO";
-            btn.style.background = "linear-gradient(90deg, var(--accent-green), #10b981)";
-            btn.style.color = "white";
-            btn.style.borderColor = "var(--accent-green)";
-            
+            btn.innerText = "✓ SUPERADO";
+            btn.style.background = "#047857";
             feedback.classList.add('success');
-            
-            addXP(xpReward);
-            saveProgress(challengeId, textarea.value);
+            addXP(xp);
         }
 
         function addXP(amount) {
             totalXP += amount;
             if (totalXP > maxXP) totalXP = maxXP;
-            updateDashboard();
-        }
-
-        function updateDashboard() {
-            // Calcular ancho de barra
-            const percentage = (totalXP / maxXP) * 100;
-            document.getElementById('xp-bar').style.width = percentage + '%';
             
-            // Mostrar texto
+            document.getElementById('xp-bar').style.width = (totalXP / maxXP) * 100 + '%';
             document.getElementById('xp-text').innerText = totalXP + ' / ' + maxXP + ' XP';
             
-            // Calcular rango dinámico
-            let rango = "Neófito";
-            if (totalXP >= 1500) rango = "Aprendiz de Juglar";
-            if (totalXP >= 4000) rango = "Oficial Escribano";
-            if (totalXP >= 6500) rango = "Maestro Clérigo";
-            if (totalXP >= 8500) rango = "Gran Maestre de la Orden";
-            
-            document.getElementById('rango-text').innerText = 'Rango: ' + rango;
+            let rango = "Iniciado";
+            if(totalXP >= 5000) rango = "Aprendiz de Juglar";
+            if(totalXP >= 10000) rango = "Oficial Escribano";
+            if(totalXP >= 15000) rango = "Maestro Clérigo";
+            if(totalXP >= 22000) rango = "Gran Maestre de la Orden";
+            document.getElementById('rango-text').innerText = rango;
         }
 
-        // --- SISTEMA DE PERSISTENCIA LOCAL (OFFLINE) --- //
-        function saveProgress(challengeId, answer) {
-            let progress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-            progress[challengeId] = answer;
-            progress['xp'] = totalXP;
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-        }
+        /* ==========================================
+           JUEGO 1: ARRASTRAR Y SOLTAR
+           ========================================== */
+        let draggedItem = null;
 
-        function loadProgress() {
-            let progress = JSON.parse(localStorage.getItem(STORAGE_KEY));
-            if (progress) {
-                if (progress.xp) {
-                    totalXP = progress.xp;
-                }
-                
-                // Iterar sobre las misiones completadas y restaurar la UI
-                for (let key in progress) {
-                    if (key !== 'xp') {
-                        let textarea = document.getElementById('ans-' + key);
-                        if (textarea) {
-                            textarea.value = progress[key];
-                            textarea.disabled = true;
-                            
-                            let btn = textarea.nextElementSibling;
-                            if(btn) {
-                                btn.disabled = true;
-                                btn.innerText = "✓ DESAFÍO SUPERADO";
-                                btn.style.background = "linear-gradient(90deg, var(--accent-green), #10b981)";
-                                btn.style.color = "white";
-                                btn.style.borderColor = "var(--accent-green)";
-                            }
-                            
-                            let feed = document.getElementById('feed-' + key);
-                            if(feed) feed.classList.add('success');
-                        }
+        function initDragAndDrop() {
+            const draggables = document.querySelectorAll('.draggable');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', () => { draggedItem = draggable; setTimeout(() => draggable.style.display = 'none', 0); });
+                draggable.addEventListener('dragend', () => { setTimeout(() => { draggedItem.style.display = 'block'; draggedItem = null; }, 0); });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+                zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+                zone.addEventListener('drop', e => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    if (draggedItem && !zone.querySelector('.draggable')) {
+                        zone.appendChild(draggedItem);
+                    } else if (draggedItem) {
+                        document.getElementById('drag-items').appendChild(draggedItem);
                     }
+                });
+            });
+        }
+
+        function checkDragAndDrop() {
+            const zones = document.querySelectorAll('.drop-zone');
+            let correctCount = 0;
+            zones.forEach(zone => {
+                const targetId = zone.getAttribute('data-target');
+                const dropped = zone.querySelector('.draggable');
+                if (dropped && dropped.id === targetId) {
+                    correctCount++;
+                    zone.style.borderColor = "#059669";
+                } else {
+                    zone.style.borderColor = "#e11d48";
                 }
+            });
+
+            if (correctCount === 4) {
+                document.getElementById('feed-dnd').classList.add('success');
+                addXP(1000);
+            }
+        }
+
+        /* ==========================================
+           JUEGO 2: ORDENAR (Botones)
+           ========================================== */
+        function moveItem(elem, dir) {
+            const li = elem.parentElement;
+            const ul = li.parentElement;
+            if(dir === -1 && li.previousElementSibling) ul.insertBefore(li, li.previousElementSibling);
+            if(dir === 1 && li.nextElementSibling) ul.insertBefore(li, li.nextElementSibling.nextElementSibling);
+        }
+
+        function checkSort() {
+            const items = document.querySelectorAll('.sortable-item');
+            let isCorrect = true;
+            let expected = [1, 2, 3, 4, 5]; // Jarchas(1), Cid(2), Berceo(3), JuanManuel(4), Celestina(5)
+            
+            items.forEach((item, index) => {
+                if (parseInt(item.getAttribute('data-order')) !== expected[index]) isCorrect = false;
+            });
+
+            if (isCorrect) {
+                document.getElementById('feed-sort').classList.add('success');
+                addXP(1000);
+            } else {
+                alert("El orden no es correcto. Repasa los siglos en la teoría.");
+            }
+        }
+
+        /* ==========================================
+           JUEGO 3: TRIVIAL
+           ========================================== */
+        const trivialData = [
+            { q: "¿En qué lengua estaban escritas las Cantigas de Amigo?", options: ["Mozárabe", "Galaicoportugués", "Castellano", "Catalán"], answer: 1 },
+            { q: "¿Cuál es la estrofa característica del Mester de Clerecía?", options: ["Tirada épica", "Romance", "Cuaderna Vía", "Soneto"], answer: 2 },
+            { q: "¿Qué rey impulsó la Escuela de Traductores de Toledo?", options: ["Alfonso X el Sabio", "Fernando III", "Reyes Católicos", "Alfonso VI"], answer: 0 },
+            { q: "¿Quién es el autor de 'La Celestina'?", options: ["Arcipreste de Hita", "Don Juan Manuel", "Fernando de Rojas", "Gonzalo de Berceo"], answer: 2 },
+            { q: "¿Qué juglar copió el Cantar de mio Cid en el siglo XIV?", options: ["Martín Codax", "Per Abbat", "Patronio", "Don Illán"], answer: 1 }
+        ];
+        
+        let tIndex = 0;
+        let tScore = 0;
+
+        function initTrivial() {
+            if (tIndex >= trivialData.length) {
+                document.getElementById('t-question').innerHTML = `Trivial Finalizado. Puntuación: ${tScore}/5`;
+                document.getElementById('t-options').innerHTML = '';
+                if(tScore === 5) {
+                    document.getElementById('feed-trivial').innerText = "¡Pleno! +2000 XP";
+                    document.getElementById('feed-trivial').classList.add('success');
+                    addXP(2000);
+                }
+                return;
+            }
+
+            const data = trivialData[tIndex];
+            document.getElementById('t-question').innerText = `${tIndex + 1}. ${data.q}`;
+            
+            let optionsHTML = '';
+            data.options.forEach((opt, i) => {
+                optionsHTML += `<button class="trivial-btn" onclick="answerTrivial(${i}, this)">${opt}</button>`;
+            });
+            document.getElementById('t-options').innerHTML = optionsHTML;
+        }
+
+        function answerTrivial(selectedIndex, btn) {
+            const correctIndex = trivialData[tIndex].answer;
+            const buttons = document.querySelectorAll('.trivial-btn');
+            buttons.forEach(b => b.disabled = true);
+
+            if (selectedIndex === correctIndex) {
+                btn.classList.add('correct');
+                tScore++;
+            } else {
+                btn.classList.add('incorrect');
+                buttons[correctIndex].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                tIndex++;
+                initTrivial();
+            }, 1500);
+        }
+
+        /* ==========================================
+           JUEGO 4: EL ROSCO LITERARIO
+           ========================================== */
+        const roscoData = [
+            { letter: 'A', def: 'Empieza por A: Autor o copiador del Cantar de Mio Cid (Per ___).', ans: 'abbat' },
+            { letter: 'B', def: 'Empieza por B: Apellido del primer poeta castellano de nombre conocido (Gonzalo de ___).', ans: 'berceo' },
+            { letter: 'C', def: 'Empieza por C: Estrofa de 4 versos alejandrinos monorrimos (___ Vía).', ans: 'cuaderna' },
+            { letter: 'E', def: 'Empieza por E: Adjetivo que acompaña al nombre del héroe para ensalzarlo (___ épico).', ans: 'epiteto' },
+            { letter: 'J', def: 'Empieza por J: Breve poema en mozárabe situado al final de la moaxaja.', ans: 'jarcha' },
+            { letter: 'L', def: 'Empieza por L: Título del noble protagonista de los cuentos de Don Juan Manuel (Conde ___).', ans: 'lucanor' },
+            { letter: 'M', def: 'Empieza por M: Oficio en la Edad Media (___ de Juglaría).', ans: 'mester' },
+            { letter: 'R', def: 'Empieza por R: Poema de versos octosílabos con rima asonante en los pares.', ans: 'romance' }
+        ];
+
+        let rIndex = 0;
+        let rState = new Array(roscoData.length).fill(0); // 0=pending, 1=correct, 2=incorrect
+
+        function initRosco() {
+            const wrapper = document.getElementById('rosco-wrapper');
+            const radius = 250;
+            const center = 300;
+            const total = roscoData.length;
+
+            // Limpiar letras anteriores
+            document.querySelectorAll('.rosco-letter').forEach(e => e.remove());
+
+            roscoData.forEach((item, i) => {
+                const angle = (i * (360 / total) - 90) * (Math.PI / 180);
+                const x = center + radius * Math.cos(angle) - 20; 
+                const y = center + radius * Math.sin(angle) - 20;
+
+                const letterDiv = document.createElement('div');
+                letterDiv.className = 'rosco-letter';
+                letterDiv.id = 'letter-' + i;
+                letterDiv.innerText = item.letter;
+                letterDiv.style.left = `${x}px`;
+                letterDiv.style.top = `${y}px`;
+                wrapper.appendChild(letterDiv);
+            });
+
+            loadRoscoQuestion();
+            
+            // Enter key trigger
+            document.getElementById('rosco-input').addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    checkRoscoAnswer();
+                }
+            });
+        }
+
+        function loadRoscoQuestion() {
+            // Find next pending
+            let found = false;
+            for(let i=0; i<roscoData.length; i++) {
+                let idx = (rIndex + i) % roscoData.length;
+                if(rState[idx] === 0) {
+                    rIndex = idx;
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found) {
+                finishRosco();
+                return;
+            }
+
+            // Update UI
+            document.querySelectorAll('.rosco-letter').forEach(l => l.classList.remove('active'));
+            document.getElementById('letter-' + rIndex).classList.add('active');
+            
+            document.getElementById('rosco-current-letter').innerText = roscoData[rIndex].letter;
+            document.getElementById('rosco-def').innerText = roscoData[rIndex].def;
+            document.getElementById('rosco-input').value = '';
+            document.getElementById('rosco-input').focus();
+        }
+
+        function checkRoscoAnswer() {
+            const userAns = document.getElementById('rosco-input').value.trim().toLowerCase();
+            const correctAns = roscoData[rIndex].ans.toLowerCase();
+            
+            const letterEl = document.getElementById('letter-' + rIndex);
+            
+            if(userAns === correctAns) {
+                rState[rIndex] = 1;
+                letterEl.classList.add('correct');
+            } else {
+                rState[rIndex] = 2;
+                letterEl.classList.add('incorrect');
+            }
+            
+            rIndex++;
+            loadRoscoQuestion();
+        }
+
+        function skipRosco() {
+            rIndex++;
+            loadRoscoQuestion();
+        }
+
+        function finishRosco() {
+            document.getElementById('rosco-current-letter').innerText = "FIN";
+            document.getElementById('rosco-def').innerText = "Has completado la ronda.";
+            document.getElementById('rosco-input').style.display = 'none';
+            
+            let corrects = rState.filter(s => s===1).length;
+            if(corrects === roscoData.length) {
+                document.getElementById('feed-rosco').classList.add('success');
+                addXP(5000);
+            } else {
+                document.getElementById('feed-rosco').style.display = 'block';
+                document.getElementById('feed-rosco').innerText = `Has acertado ${corrects} de ${roscoData.length}. Recarga la página para intentarlo de nuevo.`;
             }
         }
     </script>
